@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b0a08">
+<title>Dreame · Academy Promoter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0a08;
+  --bg2:#12100c;
+  --card:#171410;
+  --card2:#1d1a14;
+  --line:rgba(198,168,112,.28);
+  --line-soft:rgba(198,168,112,.14);
+  --gold:#c6a870;
+  --gold-hi:#e3cf9e;
+  --gold-dim:#8f7a54;
+  --ink:#f3efe7;
+  --ink2:#b7b0a2;
+  --ink3:#7d776b;
+  --danger:#d06a5a;
+  --ok:#8fae7f;
+  --radius:14px;
+  --nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Manrope',system-ui,sans-serif;
+  font-size:16px;line-height:1.6;
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));
+  min-height:100vh;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(60% 40% at 80% -5%, rgba(198,168,112,.10), transparent 60%),
+    radial-gradient(50% 35% at 10% 105%, rgba(198,168,112,.06), transparent 60%);
+}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* ---------- typography ---------- */
+h1,h2,h3,.display{font-family:'Archivo',sans-serif}
+.eyebrow{
+  font-family:'Archivo',sans-serif;font-weight:600;
+  font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--gold);
+}
+.kicker{color:var(--gold-dim);font-style:italic;font-size:.95rem}
+
+/* ---------- topbar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(11,10,8,.86);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-soft);
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{
+  font-family:'Archivo',sans-serif;font-weight:700;font-stretch:110%;
+  letter-spacing:.34em;font-size:1.02rem;color:var(--ink);
+}
+.logo span{color:var(--gold)}
+.cobrand{display:flex;align-items:center;gap:8px}
+.cobrand small{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+.cobrand img{height:24px;width:auto;opacity:.92}
+footer img{height:46px;width:auto;opacity:.85;margin-bottom:10px}
+
+/* ---------- sections / pages ---------- */
+.page{display:none;animation:fadein .35s ease}
+.page.active{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.hero{padding:44px 0 26px;border-bottom:1px solid var(--line-soft);margin-bottom:26px}
+.hero h1{
+  font-size:clamp(1.9rem,7vw,2.7rem);font-weight:700;font-stretch:105%;
+  line-height:1.12;letter-spacing:-.01em;margin:.55rem 0 .7rem;
+}
+.hero p{color:var(--ink2);max-width:56ch}
+
+section{margin:34px 0}
+section h2{
+  font-size:1.35rem;font-weight:700;font-stretch:105%;
+  margin:.4rem 0 1rem;line-height:1.25;
+}
+section h2 em{font-style:normal;color:var(--gold)}
+
+/* ---------- cards ---------- */
+.card{
+  background:linear-gradient(180deg,var(--card2),var(--card));
+  border:1px solid var(--line-soft);border-radius:var(--radius);
+  padding:18px 18px;margin-bottom:12px;
+}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:.35rem}
+.card p{color:var(--ink2);font-size:.93rem}
+.card .lead{color:var(--ink);font-size:.98rem}
+
+.grid2{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:620px){.grid2{grid-template-columns:1fr 1fr}}
+.grid3{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:680px){.grid3{grid-template-columns:repeat(3,1fr)}}
+
+/* stat tiles */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:620px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 16px;background:rgba(198,168,112,.04);
+}
+.stat b{
+  display:block;font-family:'Archivo',sans-serif;font-weight:700;
+  font-size:1.75rem;color:var(--gold-hi);letter-spacing:-.01em;line-height:1.1;
+}
+.stat span{font-size:.8rem;color:var(--ink2);display:block;margin-top:.35rem;line-height:1.4}
+
+/* key rows (mission / vision) */
+.krow{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.krow:last-child{border-bottom:none}
+.krow .k{font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding-top:.2rem}
+.krow .v{color:var(--ink2);font-size:.95rem}
+.krow .v strong{color:var(--ink)}
+
+/* quote / callout */
+.callout{
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px;background:rgba(198,168,112,.05);margin:14px 0;
+}
+.callout .eyebrow{display:block;margin-bottom:.5rem}
+.callout p{font-size:1.05rem;font-weight:600;line-height:1.5}
+.callout p.sub{font-size:.9rem;font-weight:400;color:var(--ink2);margin-top:.5rem}
+
+/* answer script */
+.script{
+  border-left:3px solid var(--gold);padding:12px 16px;margin:12px 0;
+  background:rgba(198,168,112,.05);border-radius:0 10px 10px 0;
+  font-size:.95rem;color:var(--ink);font-style:italic;
+}
+
+/* dos / donts */
+.avoid,.instead{border-radius:var(--radius);padding:16px;border:1px solid}
+.avoid{border-color:rgba(208,106,90,.35);background:rgba(208,106,90,.06)}
+.instead{border-color:rgba(143,174,127,.35);background:rgba(143,174,127,.06)}
+.avoid h4{color:var(--danger)}.instead h4{color:var(--ok)}
+.avoid h4,.instead h4{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;font-family:'Archivo',sans-serif;margin-bottom:.6rem}
+.avoid p,.instead p{font-size:.92rem;color:var(--ink2);margin-bottom:.5rem}
+.avoid p em,.instead p em{color:var(--ink);font-style:italic}
+
+/* ---------- DREAME framework strip (signature) ---------- */
+.dstrip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:18px 0 8px}
+.dletter{
+  border:1px solid var(--line);border-radius:12px;
+  background:rgba(198,168,112,.04);
+  padding:14px 4px 10px;text-align:center;cursor:pointer;
+  transition:all .22s ease;
+}
+.dletter b{
+  display:block;font-family:'Archivo',sans-serif;font-weight:800;
+  font-size:1.5rem;color:var(--gold);line-height:1;
+}
+.dletter span{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);display:block;margin-top:.45rem}
+.dletter.on{background:var(--gold);border-color:var(--gold)}
+.dletter.on b{color:#171410}
+.dletter.on span{color:#171410;opacity:.75}
+@media(min-width:620px){.dletter b{font-size:2rem}.dletter span{font-size:.62rem}}
+
+/* accordion */
+.acc{border:1px solid var(--line-soft);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;background:linear-gradient(180deg,var(--card2),var(--card))}
+.acc-head{
+  width:100%;display:flex;align-items:center;gap:12px;
+  padding:15px 16px;background:none;border:none;color:var(--ink);
+  font-family:'Manrope',sans-serif;font-size:.98rem;font-weight:700;
+  text-align:left;cursor:pointer;
+}
+.acc-head .tag{
+  font-family:'Archivo',sans-serif;font-weight:800;color:var(--gold);
+  min-width:1.5em;font-size:1.05rem;
+}
+.acc-head .sub{display:block;font-weight:400;font-size:.8rem;color:var(--ink3);margin-top:2px}
+.acc-head .chev{margin-left:auto;color:var(--gold-dim);transition:transform .25s;flex:none}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-body{display:none;padding:2px 16px 16px;border-top:1px solid var(--line-soft)}
+.acc.open .acc-body{display:block}
+.acc-body p{font-size:.92rem;color:var(--ink2);margin:.6rem 0}
+.acc-body p strong{color:var(--ink)}
+.acc-body .mini{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-family:'Archivo',sans-serif;font-weight:600;margin-top:1rem;display:block}
+.rule{
+  margin-top:14px;padding:10px 14px;border:1px dashed var(--line);
+  border-radius:10px;font-size:.85rem;color:var(--gold-hi);
+}
+.rule b{font-family:'Archivo',sans-serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;display:block;margin-bottom:.25rem;color:var(--gold)}
+
+/* table-ish list */
+.tlist{border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden}
+.trow{display:grid;grid-template-columns:1fr;padding:14px 16px;border-bottom:1px solid var(--line-soft);background:var(--card)}
+.trow:nth-child(even){background:var(--card2)}
+.trow:last-child{border-bottom:none}
+.trow .t1{font-weight:700;font-size:.92rem;color:var(--gold)}
+.trow .t2{font-size:.88rem;color:var(--ink2);font-style:italic;margin-top:2px}
+.trow .t3{font-size:.85rem;color:var(--ink);margin-top:4px}
+.trow .t3::before{content:"→ ";color:var(--gold-dim)}
+
+/* category chips nav */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:none;border:1px solid var(--line);border-radius:999px;
+  padding:8px 16px;font-size:.82rem;font-weight:600;color:var(--ink2);
+  background:transparent;cursor:pointer;font-family:'Manrope',sans-serif;
+  transition:all .2s;
+}
+.chip.on{background:var(--gold);color:#171410;border-color:var(--gold)}
+
+.cat{display:none}
+.cat.active{display:block;animation:fadein .3s ease}
+.cat-title{
+  font-family:'Archivo',sans-serif;font-weight:700;font-size:1.45rem;
+  margin:.2rem 0 .2rem;
+}
+.cat-title::before{content:"「 ";color:var(--gold-dim);font-weight:400}
+.cat-title::after{content:" 」";color:var(--gold-dim);font-weight:400}
+
+.uselist .card h3{color:var(--gold-hi);font-size:.95rem}
+.uselist .card .q{font-style:italic;color:var(--ink);font-size:.92rem;margin-bottom:.4rem}
+
+.filtro{
+  border:1px solid var(--line);border-radius:var(--radius);padding:16px;
+  background:rgba(198,168,112,.05);margin-top:14px;
+}
+.filtro h4{font-family:'Archivo',sans-serif;font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem}
+.filtro p{font-size:.88rem;color:var(--ink2);margin:.35rem 0}
+.filtro p b{color:var(--ink)}
+
+/* footer */
+footer{margin:56px 0 24px;text-align:center;color:var(--ink3);font-size:.75rem;letter-spacing:.06em}
+footer b{color:var(--gold-dim);letter-spacing:.3em;font-family:'Archivo',sans-serif}
+
+/* ---------- bottom nav ---------- */
+nav.bottom{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:rgba(13,12,9,.92);backdrop-filter:blur(16px);
+  border-top:1px solid var(--line-soft);
+  height:calc(var(--nav-h) + env(safe-area-inset-bottom));
+  padding-bottom:env(safe-area-inset-bottom);
+}
+nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
+.nbtn{
+  background:none;border:none;color:var(--ink3);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  font-family:'Manrope',sans-serif;font-size:.64rem;font-weight:600;letter-spacing:.06em;
+  transition:color .2s;
+}
+.nbtn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.nbtn.on{color:var(--gold)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="logo">DRE<span>A</span>ME</div>
+    <div class="cobrand">
+      <small>powered by</small>
+      <img src="data:image/png;base64,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" alt="LFM S.p.A.">
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ============ PAGE: BRAND ============ -->
+<div class="page active" id="page-brand">
+
+  <div class="hero">
+    <span class="eyebrow">Modulo 1 · Chi siamo</span>
+    <h1>Benvenuti in Dreame</h1>
+    <p>Il brand, la storia, i due marchi del gruppo, il vostro ruolo sul territorio. Tutto quello che serve per partire bene, sempre a portata di mano.</p>
+  </div>
+
+  <section>
+    <h2>Identità del brand</h2>
+    <div class="card">
+      <div class="krow"><div class="k">Mission</div><div class="v"><strong>Far progredire la società umana attraverso il potere della tecnologia.</strong></div></div>
+      <div class="krow"><div class="k">Vision</div><div class="v">Diventare un'azienda tecnologica leader a livello mondiale, guidata dall'esplorazione e dalla crescita, capace di plasmare il più grande ecosistema tecnologico al mondo.</div></div>
+      <div class="krow"><div class="k">Attributi</div><div class="v"><strong>Tecnologia · Intelligenza · Premium · Tendenza</strong></div></div>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">All dreams in one Dreame</span>
+      <p class="sub">Il claim che riassume la promessa del brand: un unico ecosistema tecnologico per tutti i sogni domestici.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cosa significa <em>in negozio</em></h2>
+    <div class="grid2">
+      <div class="card"><h3>Tecnologia</h3><p>Progettiamo i nostri componenti. Non siamo assemblatori di pezzi prodotti da altri.</p></div>
+      <div class="card"><h3>Intelligenza</h3><p>I nostri prodotti imparano, si adattano e migliorano. Diventano più intelligenti a ogni utilizzo.</p></div>
+      <div class="card"><h3>Premium</h3><p>Una qualità che si vede e si sente ancora prima di accendere il prodotto.</p></div>
+      <div class="card"><h3>Tendenza</h3><p>Oggetti che i clienti sono orgogliosi di esporre in casa, non di nascondere in un armadio.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Da dove veniamo</h2>
+    <p class="kicker" style="margin-bottom:12px">"Aviazione e sogni" — la storia di Dreame inizia con un ingegnere aerospaziale di Tsinghua.</p>
+    <div class="tlist">
+      <div class="trow"><div class="t1">2009 · Le origini aerospaziali</div><div class="t3">Yu Hao viene ammesso alla Scuola di Ingegneria Aerospaziale di Tsinghua. Fonda Skyworks e diventa uno dei primi sviluppatori di quadricotteri in Cina.</div></div>
+      <div class="trow"><div class="t1">2015 · La scelta deliberata</div><div class="t3">Il team fondatore affronta una delle sfide più complesse dell'elettrodomestico intelligente: il motore digitale ad alta velocità.</div></div>
+      <div class="trow"><div class="t1">Oggi · Una convinzione ancora attiva</div><div class="t3">"La tecnologia di base è il fondamento di tutto." — Yu Hao, Fondatore</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Dreame oggi</h2>
+    <div class="stats">
+      <div class="stat"><b>120+</b><span>Paesi dove i nostri prodotti sono venduti</span></div>
+      <div class="stat"><b>42M+</b><span>Famiglie nel mondo utenti DreameHome</span></div>
+      <div class="stat"><b>70%</b><span>Dei dipendenti in R&D e design</span></div>
+      <div class="stat"><b>10.000+</b><span>Brevetti depositati nel mondo</span></div>
+      <div class="stat"><b>N°1</b><span>Quota di mercato robot aspirapolvere in Europa · 2025</span></div>
+      <div class="stat"><b>+139%</b><span>Crescita fatturato Europa · primo semestre 2025</span></div>
+    </div>
+    <div class="callout" style="margin-top:14px">
+      <span class="eyebrow">N°1 mondiale · robot aspirapolvere</span>
+      <p>Prima marca mondiale di robot aspirapolvere, in volume di vendite e in fatturato.</p>
+      <p class="sub">Classifica certificata in modo indipendente da International Data Corporation (IDC), Q1 2026. In Europa le vendite sono cresciute del +110% (gen.–apr. 2026 vs stesso periodo 2025, fonte Dreame).</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Dreame e MOVA</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3 style="color:var(--gold)">DREAME</h3>
+        <p class="lead"><strong>Il marchio storico.</strong></p>
+        <p>Gamma completa, tutte le categorie, posizionamento premium. È il marchio che voi rappresentate.</p>
+      </div>
+      <div class="card">
+        <h3>MOVA</h3>
+        <p class="lead"><strong>Il marchio più accessibile.</strong></p>
+        <p>Lanciato nel 2023 da Dreame Technology. All'inizio un ingresso di gamma accessibile; oggi un'estensione del portfolio, con una propria identità e un proprio posizionamento.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <p class="sub" style="margin-top:0"><strong style="color:var(--ink)">Un'unica casa madre: Dreame Technology.</strong> Due marchi distinti, da non confondere mai.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Perché siete qui</h2>
+    <div class="card">
+      <p class="lead"><strong>Dreame potrebbe vendere tutto online.</strong></p>
+      <p>Dreame.com esiste. Amazon esiste. Ogni prodotto è disponibile online, con schede tecniche, recensioni e consegna in 24 ore.</p>
+      <p style="margin-top:.6rem;color:var(--gold-hi);font-weight:600">Dreame sceglie la presenza umana. Per convinzione.</p>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Il vostro ruolo</span>
+      <p>Voi siete la conversazione che una scheda prodotto non può avere.</p>
+      <p class="sub">Un cliente che entra in un display Dreame ha già fatto le sue ricerche. Quello che non ha è qualcuno che colleghi la tecnologia alla sua vita reale. La vostra missione: rendere la tecnologia comprensibile, concreta, desiderabile — parlando il linguaggio del cliente, non recitando specifiche.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cosa si aspetta Dreame</h2>
+    <div class="grid3">
+      <div class="card"><h3>Rendere la tecnologia semplice</h3><p>I clienti non conoscono le specifiche. Spiegate cosa fa quella tecnologia per la loro vita. Con parole semplici. Sempre.</p></div>
+      <div class="card"><h3>Coinvolgere, non recitare</h3><p>Un cliente che torna a casa con una risposta al suo problema vale più di dieci funzionalità recitate. Fate domande. Ascoltate. Poi parlate.</p></div>
+      <div class="card"><h3>Costruire una relazione</h3><p>Non siete lì per una transazione. Siete lì perché il cliente torni, e porti qualcun altro con sé.</p></div>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">Una sola cosa da ricordare</span>
+      <p>Il vostro ruolo è rendere la tecnologia accessibile a ogni cliente, con le parole giuste, al momento giusto.</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ PAGE: METODO ============ -->
+<div class="page" id="page-metodo">
+
+  <div class="hero">
+    <span class="eyebrow">Modulo 2 · Come vendere</span>
+    <h1>Il framework DREAME</h1>
+    <p>Sei fasi che portano il cliente dalla scoperta all'acquisto, e dall'acquisto al ritorno. Una conversazione. Tutte le categorie.</p>
+  </div>
+
+  <div class="dstrip" id="dstrip">
+    <button class="dletter" data-phase="0"><b>D</b><span>Detect</span></button>
+    <button class="dletter" data-phase="1"><b>R</b><span>Reach</span></button>
+    <button class="dletter" data-phase="2"><b>E</b><span>Explore</span></button>
+    <button class="dletter" data-phase="3"><b>A</b><span>Align</span></button>
+    <button class="dletter" data-phase="4"><b>M</b><span>Move</span></button>
+    <button class="dletter" data-phase="5"><b>E</b><span>Extend</span></button>
+  </div>
+
+  <section style="margin-top:10px">
+
+    <div class="acc" data-acc="0">
+      <button class="acc-head"><span class="tag">D</span><span>Detect<span class="sub">Leggere il cliente prima di muoversi</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <span class="mini">Cosa leggete in 10–15 secondi</span>
+        <p><strong>Cosa guarda.</strong> Prodotto preciso → sa dove andare. Tutta la zona → sta ancora esplorando.</p>
+        <p><strong>Come lo guarda.</strong> Legge le etichette → cliente informato. Lo tocca → compra con le mani. Lo fotografa → torna a fare ricerche.</p>
+        <p><strong>Quanto si ferma.</strong> Si sofferma → interesse forte. Passa oltre → sta ancora esplorando.</p>
+        <p><strong>Con chi è.</strong> Da solo → decide da solo. Con il partner → decidono insieme. Con i figli → non ha molto tempo.</p>
+        <p><strong>Segnali d'acquisto chiari.</strong> Borse di altri negozi, prodotto già in mano, vi cerca con lo sguardo.</p>
+        <div class="rule"><b>Regola</b>Non ci si avvicina mai senza un'ipotesi. Ci si avvicina al cliente con una direzione, non con una domanda.</div>
+      </div>
+    </div>
+
+    <div class="acc" data-acc="1">
+      <button class="acc-head"><span class="tag">R</span><span>Reach<span class="sub">Aprire a partire da quello che avete visto</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <div class="grid2" style="margin-top:12px">
+          <div class="avoid">
+            <h4>Da evitare</h4>
+            <p><em>"Posso aiutarla?"</em> — la risposta è quasi sempre no.</p>
+            <p><em>"Sta cercando qualcosa in particolare?"</em> — invita a dire: "No, sto solo guardando."</p>
+          </div>
+          <div class="instead">
+            <h4>Al suo posto</h4>
+            <p>Partite da quello che avete visto: <em>"Cosa l'ha colpita di questo modello?"</em></p>
+            <p>Oppure un'osservazione che apre: <em>"Quello è appena arrivato, vuole che glielo accenda?"</em></p>
+          </div>
+        </div>
+        <div class="rule"><b>Regola</b>La prima frase apre, non vende. Nasce da quello che avete visto, mai da uno script.</div>
+      </div>
+    </div>
+
+    <div class="acc" data-acc="2">
+      <button class="acc-head"><span class="tag">E</span><span>Explore<span class="sub">Capire il problema. Il prodotto viene dopo</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <span class="mini">Domande aperte · il cliente parla, voi ascoltate</span>
+        <p><em>"Come gestisce la pulizia in casa al momento?"</em> · <em>"Qual è la sua routine per i capelli di solito?"</em> · <em>"Cosa la infastidisce di più del suo aspirapolvere attuale?"</em></p>
+        <span class="mini">Domande chiuse · per confermare o inquadrare</span>
+        <p><em>"Avete animali in casa?"</em> · <em>"È più parquet o tappeti?"</em> · <em>"È per lei o è un regalo?"</em></p>
+        <span class="mini">Domande di approfondimento · riprendete le sue parole esatte</span>
+        <p><em>"Diceva che lascia sempre i bordi sporchi, dove succede più spesso?"</em> · <em>"Quando dice che ci vuole troppo tempo, parliamo di quanto?"</em></p>
+        <div class="rule"><b>Regola</b>Niente prodotto prima di 3 informazioni concrete. Il promoter parla il 20%, ascolta l'80%.</div>
+      </div>
+    </div>
+
+    <div class="acc" data-acc="3">
+      <button class="acc-head"><span class="tag">A</span><span>Align<span class="sub">Collegare il prodotto alle sue parole. Metterlo nelle sue mani</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <div class="script">"Lei mi ha detto [X]. Questo prodotto risolve [X] perché [motivo]. Mi lasci mostrare."</div>
+        <span class="mini">La demo · 3 tempi</span>
+        <p><strong>01 Mostrare.</strong> Dimostrate la caratteristica che risponde a quello che ha detto. Accendetelo. Rendetelo reale.</p>
+        <p><strong>02 Spiegare.</strong> Una frase. Cosa fa, non come funziona dentro.</p>
+        <p><strong>03 Collegare.</strong> Una frase. Perché conta per quel cliente specifico. Con le sue parole.</p>
+        <span class="mini">Il prodotto nelle sue mani</span>
+        <p>Sempre. Il cliente che tiene il prodotto ha 3 volte più probabilità di acquistare rispetto a chi lo guarda soltanto. Datelo <strong>prima</strong> di spiegare, non dopo.</p>
+        <div class="rule"><b>Regola</b>Massimo 3 caratteristiche. Sempre le 3 più rilevanti per quel cliente. La quarta non aggiunge nulla: affoga.</div>
+      </div>
+    </div>
+
+    <div class="acc" data-acc="4">
+      <button class="acc-head"><span class="tag">M</span><span>Move<span class="sub">Guidare la decisione. Concludere sulla vita, non sul prodotto</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <span class="mini">Segnali d'acquisto · da leggere prima di concludere</span>
+        <p>→ Continua a toccare il prodotto · → Si gira verso il partner per avere conferma · → Fa domande pratiche (consegna, garanzia, cosa è incluso) · → Sta in silenzio: sta decidendo.</p>
+        <span class="mini">La conclusione naturale</span>
+        <div class="script">"Ripensando a tutto quello che mi ha detto, [X, Y, Z], questo è il modello che risponde a tutti e tre. C'è qualcosa che la trattiene, o ha ancora una domanda sul prodotto?"</div>
+        <span class="mini">Gestire le obiezioni · 2 step, non di più</span>
+        <p><strong>01 Accogliere.</strong> Non si difende. Si valida prima. "Ha ragione, è proprio così… è un investimento." Il cliente si rilassa.</p>
+        <p><strong>02 Un solo argomento.</strong> Il più forte. Non una lista. "Quello che le direi è questo…"</p>
+        <div class="rule"><b>Regola</b>Non si conclude mai sul prodotto. Si conclude sulla vita. "Non le sto vendendo un robot. Le sto restituendo 4 ore a settimana."</div>
+      </div>
+    </div>
+
+    <div class="acc" data-acc="5">
+      <button class="acc-head"><span class="tag">E</span><span>Extend<span class="sub">Lasciare un motivo per tornare, e qualcuno da cui tornare</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <span class="mini">3 cose da fare prima che il cliente vada via</span>
+        <p><strong>01 Un consiglio utile.</strong> Pratico, inaspettato, specifico rispetto a quello che vi ha detto.</p>
+        <div class="script">"Visto che ha animali, la prima cosa da fare appena arriva a casa è creare una zona di esclusione intorno alla loro ciotola: 30 secondi nell'app e cambia davvero qualcosa."</div>
+        <p><strong>02 Un punto di contatto.</strong> Date il vostro nome, dite quando ci siete, rendete il ritorno semplice e concreto.</p>
+        <div class="script">"Sono qui dal martedì al sabato. Se ha domande una volta installato, ripassi a trovarmi, sono qui per questo."</div>
+        <p><strong>03 Un invito chiaro.</strong> Che abbia comprato oggi o no. Se ha comprato: invitatelo a tornare per qualsiasi domanda. Se non ha comprato: porta aperta, senza pressione.</p>
+        <div class="script">"Se vuole vedere Z30 Pro Aqua quando arriva il mese prossimo, ripassi, le faccio una demo completa."</div>
+        <div class="rule"><b>Regola</b>Extend funziona sia che il cliente abbia comprato sia che non abbia comprato. Il cliente trattato bene è quello che torna, e che porta qualcuno.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <section>
+    <h2>Stesso framework. <em>Conversazioni adattate.</em></h2>
+    <p class="kicker" style="margin-bottom:12px">Le domande di Explore e il pivot di Align cambiano in base alla categoria. Le sei fasi, mai.</p>
+    <div class="tlist">
+      <div class="trow"><div class="t1">Robot aspirapolvere</div><div class="t2">"Come gestisce la pulizia in casa al momento?"</div><div class="t3">Pivot Align: tempo recuperato + autonomia</div></div>
+      <div class="trow"><div class="t1">Aspirapolvere senza filo</div><div class="t2">"Cosa la infastidisce di più del suo aspirapolvere attuale?"</div><div class="t3">Pivot Align: la frustrazione precisa — bordi, capelli, moquette, peso</div></div>
+      <div class="trow"><div class="t1">Wet &amp; Dry</div><div class="t2">"Dopo aver aspirato, lava anche i pavimenti separatamente?"</div><div class="t3">Pivot Align: basta fare le due cose separatamente</div></div>
+      <div class="trow"><div class="t1">Cura dei capelli</div><div class="t2">"Qual è la sua routine per i capelli di solito?"</div><div class="t3">Pivot Align: il risultato voluto, non lo strumento che crede di volere</div></div>
+      <div class="trow"><div class="t1">Altri</div><div class="t2">"Lo fa quante volte al momento, e quanto tempo ci mette?"</div><div class="t3">Pivot Align: tempo e fatica eliminati</div></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ PAGE: CATEGORIE ============ -->
+<div class="page" id="page-categorie">
+
+  <div class="hero">
+    <span class="eyebrow">Modulo 3 · Le categorie</span>
+    <h1>Portfolio map</h1>
+    <p>Cura dei pavimenti e cura della persona. Ogni categoria: cos'è, cosa guadagna il cliente, come si usa, cosa la rende buona, e il filtro giusto in negozio.</p>
+  </div>
+
+  <div class="chips" id="catchips">
+    <button class="chip on" data-cat="robot">Robot</button>
+    <button class="chip" data-cat="cordless">Senza filo</button>
+    <button class="chip" data-cat="wetdry">Wet &amp; Dry</button>
+    <button class="chip" data-cat="hair">Hair care</button>
+    <button class="chip" data-cat="skin">Skincare</button>
+  </div>
+
+  <!-- ROBOT -->
+  <div class="cat active" id="cat-robot">
+    <h2 class="cat-title">Robot aspirapolvere</h2>
+    <p class="kicker">La categoria che pulisce mentre vivete.</p>
+    <div class="card" style="margin-top:14px">
+      <p class="lead">Un robot aspirapolvere pulisce i pavimenti da solo, secondo un programma, quando in casa non c'è nessuno. <strong>Il cliente fissa le regole. Il robot fa il lavoro.</strong></p>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">La differenza fondamentale</span>
+      <p class="sub" style="margin-top:0">Tutti gli altri prodotti di pulizia funzionano quando il cliente li tiene in mano. Il robot è l'unica categoria che funziona quando non c'è nessuno. È questo che lo rende una categoria a sé, non solo un aspirapolvere diverso.</p>
+    </div>
+
+    <section>
+      <h2>Cosa guadagna il cliente</h2>
+      <p class="kicker" style="margin-bottom:12px">Il robot non si vende sull'aspirazione. Si vende sul tempo.</p>
+      <div class="card"><h3>Tempo recuperato</h3><p>Chi passava 30–45 minuti al giorno a pulire recupera 4–5 ore a settimana. In un anno, più di 200 ore. Tempo speso ad aspirare che diventa tempo per altro.</p></div>
+      <div class="card"><h3>Regolarità</h3><p>Il robot pulisce ogni giorno, non quando il cliente se ne ricorda. Polvere raccolta prima che si accumuli, peli prima che si aggroviglino. Il pavimento resta pulito perché la pulizia non si ferma mai.</p></div>
+      <div class="card"><h3>Carico mentale</h3><p>Il cliente smette di pianificare, di sentirsi in colpa, di notare la polvere durante la settimana. È il beneficio più difficile da spiegare, ma il più percepito.</p></div>
+    </section>
+
+    <section class="uselist">
+      <h2>Un prodotto, tre modi di usarlo</h2>
+      <div class="card"><h3>01 · Utilizzo reattivo</h3><p class="q">"Premo il pulsante quando vedo dello sporco."</p><p>Nessun programma fisso. Il robot è lì, pronto a partire per una pulita estemporanea.</p></div>
+      <div class="card"><h3>02 · Utilizzo mirato</h3><p class="q">"Lo lascio pulire la cucina dopo i pasti."</p><p>Zone precise, regolarmente. La cucina dopo cena, l'ingresso dopo le passeggiate. I punti che si sporcano più spesso.</p></div>
+      <div class="card"><h3>03 · Utilizzo in routine</h3><p class="q">"Lo programmo per pulire tutta la casa ogni giorno."</p><p>Programma fisso, tutta la casa, ogni giorno o due. Il robot diventa il sistema principale di pulizia dei pavimenti.</p></div>
+      <div class="filtro"><h4>Il filtro in negozio</h4><p><b>Vuole controllare ogni passaggio</b> → aspirapolvere senza filo è più adatto.</p></div>
+    </section>
+
+    <section>
+      <h2>Cosa rende un buon robot</h2>
+      <p class="kicker" style="margin-bottom:12px">Sei principi, validi per qualsiasi robot — Dreame o no.</p>
+      <div class="acc"><button class="acc-head"><span class="tag">01</span><span>Come naviga<span class="sub">Sa dove sta andando?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Costruisce una mappa della casa, conosce la sua posizione esatta in tempo reale, pianifica percorsi efficienti. Non gira a caso rimbalzando sui mobili.</p><p><strong>Perché è importante.</strong> Una navigazione casuale salta zone e perde tempo. Una navigazione intelligente pulisce ogni metro quadro accessibile in un solo passaggio efficiente.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">02</span><span>Come aspira<span class="sub">Raccoglie davvero lo sporco?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Aspirazione potente E una spazzola progettata per sollevare lo sporco nel flusso d'aria. L'aspirazione da sola non basta: è la spazzola che stacca lo sporco dal pavimento.</p><p><strong>Perché è importante.</strong> Due robot con gli stessi pascal possono avere prestazioni molto diverse. La spazzola fa la differenza tra pulizia visibile e pulizia di superficie.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">03</span><span>Come lava<span class="sub">Lava davvero, o sparge solo acqua?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Vera pressione verso il basso sullo straccio, panno che gira a velocità, acqua pulita e acqua sporca gestite separatamente. Un panno umido passivo non è lavare.</p><p><strong>Perché è importante.</strong> Senza pressione, rotazione e gestione dell'acqua, il pavimento è bagnato ma non pulito. Il cliente si ritrova a rifare il lavoro a mano.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">04</span><span>Come si mantiene da solo<span class="sub">Devo occuparmene io, o ci pensa lui?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Svuota la polvere in stazione, lava e asciuga lo straccio, si riempie d'acqua da solo. Il cliente interagisce con il robot una volta a settimana, non ogni giorno.</p><p><strong>Perché è importante.</strong> Un robot da svuotare ogni giorno ricrea esattamente il carico che doveva eliminare. L'autonomia è tutto il valore del prodotto.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">05</span><span>Come si adatta alla casa<span class="sub">Mobili, animali, soglie?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Riconosce ostacoli, raggiunge bordi e angoli, supera soglie, si adatta a tappeti e parquet, impara a evitare le zone degli animali. È lui che si adatta alla casa, non il contrario.</p><p><strong>Perché è importante.</strong> Un robot che non si adatta costringe il cliente ad adattare la casa attorno a lui — e questo annulla il valore di comprarlo.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">06</span><span>Come lo controllo<span class="sub">Come gli dico cosa deve fare?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> App chiara: orari, zone vietate, stanze, avanzamento. Comandi vocali e integrazione nell'ecosistema della casa.</p><p><strong>Perché è importante.</strong> Il robot fa la pulizia, ma è il cliente che fissa le regole. Se l'app è complicata, il cliente smette di personalizzare e il robot rende meno.</p></div></div>
+    </section>
+  </div>
+
+  <!-- CORDLESS -->
+  <div class="cat" id="cat-cordless">
+    <h2 class="cat-title">Aspirapolvere senza filo</h2>
+    <p class="kicker">La categoria che pulisce su richiesta.</p>
+    <div class="card" style="margin-top:14px">
+      <p class="lead">Leggero, a batteria, il cliente lo tiene e lo dirige da solo. <strong>Lo prende, pulisce quello che vuole, lo ripone.</strong></p>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">La differenza fondamentale</span>
+      <p class="sub" style="margin-top:0">Il robot pulisce da solo, anche quando non c'è nessuno. L'aspirapolvere senza filo pulisce solo quando il cliente lo decide, e solo dove lo dirige lui. Il controllo è interamente nelle sue mani: è una categoria a sé, non un robot più semplice.</p>
+    </div>
+
+    <section>
+      <h2>Cosa guadagna il cliente</h2>
+      <div class="card"><h3>Immediatezza</h3><p>Lo si prende, si pulisce, lo si ripone. Nessuna accensione, nessun programma, nessuna attesa. Raggiunge il cliente dove c'è lo sporco, nel momento esatto in cui lo nota.</p></div>
+      <div class="card"><h3>Controllo</h3><p>Dove pulire, con quale intensità, per quanto tempo. Ogni passaggio è intenzionale. Per chi vuole vedere e sentire la pulizia mentre la fa, il controllo è tutto il valore della categoria.</p></div>
+      <div class="card"><h3>Versatilità</h3><p>Pavimento, scale, divano, auto, soffitto, materasso. Con gli accessori giusti raggiunge tutte le superfici pulibili. Il robot pulisce il pavimento. Il senza filo pulisce tutto.</p></div>
+    </section>
+
+    <section class="uselist">
+      <h2>Un prodotto, tre modi di usarlo</h2>
+      <div class="card"><h3>01 · Utilizzo reattivo</h3><p class="q">"Lo prendo quando vedo qualcosa."</p><p>Versamenti, briciole, peli dopo che il cane è saltato sul divano. Pronto all'uso, in sessioni brevi.</p></div>
+      <div class="card"><h3>02 · Utilizzo mirato</h3><p class="q">"Pulisco le stesse zone tutti i giorni."</p><p>La cucina ogni giorno, l'ingresso dopo le passeggiate, il punto dove mangia il gatto. I punti caldi ricorrenti.</p></div>
+      <div class="card"><h3>03 · Utilizzo in routine</h3><p class="q">"Faccio una sessione completa, una o due volte a settimana."</p><p>Tutta la casa in un passaggio: tappeti, parquet, bordi, scale. Lo strumento di pulizia principale.</p></div>
+      <div class="filtro"><h4>Il filtro in negozio</h4><p><b>Non vuole fare la pulizia da sé</b> → il robot aspirapolvere è più adatto.</p><p><b>Vuole lavare i pavimenti, non solo aspirare</b> → il Wet &amp; Dry è più adatto.</p></div>
+    </section>
+
+    <section>
+      <h2>Cosa rende buono un senza filo</h2>
+      <div class="acc"><button class="acc-head"><span class="tag">01</span><span>Come genera l'aspirazione<span class="sub">Aspira abbastanza forte?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Un motore che gira abbastanza veloce da creare una vera differenza di pressione. Airwatt e giri al minuto sono i segnali visibili di questa potenza.</p><p><strong>Perché è importante.</strong> Senza aspirazione potente, la polvere resta sul pavimento e il cliente fa più passaggi per lo stesso risultato.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">02</span><span>Come raccoglie lo sporco<span class="sub">La spazzola solleva davvero?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Una testa spazzola che smuove il pavimento, stacca le particelle incrostate e le invia nel flusso d'aria. L'aspirazione è metà del lavoro; la spazzola è l'altra metà.</p><p><strong>Perché è importante.</strong> Un motore potente con una spazzola scarsa lascia sporco a terra. Due prodotti con gli stessi airwatt possono pulire in modo molto diverso.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">03</span><span>Come mantiene l'aria pulita<span class="sub">Aria pulita, o polvere spostata?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Filtrazione multi-strato che cattura particelle fini, polvere, polline, spore di muffa. La filtrazione di qualità HEPA è il riferimento.</p><p><strong>Perché è importante.</strong> Un aspirapolvere non pulisce solo il pavimento: pulisce l'aria. Clienti allergici, asmatici o con bambini piccoli lo notano immediatamente.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">04</span><span>Quanto dura<span class="sub">Regge tutta la casa in una carica?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Batteria adeguata alla potenza: un'aspirazione più forte scarica prima. Conta l'autonomia utile reale, non solo il numero dichiarato. Le batterie removibili allungano la sessione.</p><p><strong>Perché è importante.</strong> Un cliente che resta senza batteria a metà pulizia perde fiducia nel prodotto. L'autonomia è il requisito silenzioso.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">05</span><span>Come si adatta ai pavimenti<span class="sub">Tappeti, parquet, bordi?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Regolazioni della spazzola o rilevamento automatico delle superfici. Raggiunge bordi e angoli, passa dal parquet al tappeto senza perdere prestazioni.</p><p><strong>Perché è importante.</strong> Ogni casa è un mix di superfici. Un aspirapolvere che fatica su una di queste è un mezzo prodotto per quel cliente.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">06</span><span>Come gestisce i capelli<span class="sub">Si aggrovigliano ogni settimana?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Tecnologia anti-aggrovigliamento nella testa spazzola: lame di taglio, rulli doppi, o una geometria che devia i capelli e impedisce alle ciocche di avvolgersi sul rullo.</p><p><strong>Perché è importante.</strong> Pulire la spazzola piena di capelli dopo ogni utilizzo è una seccatura inattesa. Per chi ha capelli lunghi o animali è spesso la prima frustrazione con il vecchio aspirapolvere.</p></div></div>
+    </section>
+  </div>
+
+  <!-- WET & DRY -->
+  <div class="cat" id="cat-wetdry">
+    <h2 class="cat-title">Wet &amp; Dry</h2>
+    <p class="kicker">La categoria che lava mentre aspira.</p>
+    <div class="card" style="margin-top:14px">
+      <p class="lead">Un aspirapolvere progettato per lavare i pavimenti duri. <strong>Aspira e lava allo stesso tempo, in un solo passaggio, sulla stessa superficie.</strong> Il cliente lo tiene e lo dirige, ma il risultato è umido.</p>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">La differenza fondamentale</span>
+      <p class="sub" style="margin-top:0">Il robot pulisce da solo. Il senza filo aspira su richiesta. Il Wet &amp; Dry lava su richiesta: sostituisce straccio e secchio con un unico apparecchio che aspira lo sporco secco e lava i pavimenti duri insieme. La funzione lavaggio non è un accessorio. È l'intera categoria.</p>
+    </div>
+
+    <section>
+      <h2>Cosa guadagna il cliente</h2>
+      <div class="card"><h3>Simultaneità</h3><p>Aspira lo sporco secco e lava con acqua pulita in un solo passaggio. Non due pulizie di seguito: una sola che gestisce secco e umido insieme. È il valore strutturale della categoria.</p></div>
+      <div class="card"><h3>Igiene</h3><p>Lo straccio tradizionale lava con acqua sempre più sporca. Il Wet &amp; Dry spruzza acqua pulita e raccoglie la sporca in un serbatoio separato: i due non si mescolano mai. Il cliente rimuove lo sporco, non lo ridistribuisce.</p></div>
+      <div class="card"><h3>Senza sforzo fisico</h3><p>Lo straccio si basa sulla forza delle braccia. Il Wet &amp; Dry ha una spazzola motorizzata che strofina meccanicamente. Chinarsi, strizzare, strofinare a mano: finito.</p></div>
+    </section>
+
+    <section class="uselist">
+      <h2>Un prodotto, tre modi di usarlo</h2>
+      <div class="card"><h3>01 · Utilizzo reattivo</h3><p class="q">"Lo prendo quando rovescio qualcosa."</p><p>Caffè, cibo, incidenti dell'animale. Danni immediati, liquidi e appiccicosi, che un senza filo non può trattare.</p></div>
+      <div class="card"><h3>02 · Utilizzo mirato</h3><p class="q">"Lavo il pavimento della cucina dopo i pasti."</p><p>Zone precise, più volte a settimana: cucina, ingresso dopo il cane, bagno.</p></div>
+      <div class="card"><h3>03 · Utilizzo in routine</h3><p class="q">"È integrato nella mia pulizia regolare."</p><p>Tutti i pavimenti duri, da due volte a settimana a quasi ogni giorno. Sostituisce completamente straccio e secchio.</p></div>
+      <div class="filtro"><h4>Il filtro in negozio</h4><p><b>Vuole solo pulizia a secco</b> → il senza filo è più adatto.</p><p><b>Soprattutto tappeti, pochissimi pavimenti duri</b> → il senza filo è più adatto. Il Wet &amp; Dry è per i pavimenti duri.</p></div>
+    </section>
+
+    <section>
+      <h2>Cosa rende buono un Wet &amp; Dry</h2>
+      <div class="acc"><button class="acc-head"><span class="tag">01</span><span>Come lava<span class="sub">Acqua pulita, o sporco riciclato?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Spruzza acqua pulita in continuo e raccoglie la sporca in un serbatoio separato. La spazzola è alimentata con acqua pulita a ogni passaggio.</p><p><strong>Perché è importante.</strong> Se la stessa acqua serve per tutta la pulizia, il cliente sposta lo sporco invece di toglierlo. I due serbatoi fanno la differenza tra lavare e stendere sporco umido.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">02</span><span>Come raccoglie lo sporco<span class="sub">Aspira e lava allo stesso tempo?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Aspirazione e rotazione della spazzola lavorano insieme: la spazzola strofina, l'aspirazione solleva subito sporco e acqua sporca nel serbatoio di scarico. Un motore a separazione liquida protegge l'aspirazione dall'acqua.</p><p><strong>Perché è importante.</strong> Aspirazione debole → pavimento bagnato e sporco. Spazzola debole → strofinamento incompleto. Servono entrambi, in un solo gesto.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">03</span><span>Come raggiunge i bordi<span class="sub">Pulisce fino al muro su ogni lato?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Geometria di pulizia dei bordi su tutti i lati: sinistro, destro e anteriore. I modelli premium abbassano la spazzola automaticamente per colmare lo spazio anteriore, raggiungendo il muro nel movimento in avanti.</p><p><strong>Perché è importante.</strong> Un bordo sporco attorno a ogni stanza costringe il cliente a finire a mano. La promessa del passaggio unico crolla se un bordo resta escluso.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">04</span><span>Come si pulisce da solo<span class="sub">Devo lavare la spazzola ogni volta?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Base autopulente: dopo la pulizia il cliente posa l'apparecchio, preme un pulsante, e la base lava e asciuga la spazzola. I modelli premium la immergono in acqua calda per una sterilizzazione completa.</p><p><strong>Perché è importante.</strong> Una spazzola umida lasciata sporca sviluppa odori e batteri in poche ore. Se va risciacquata a mano ogni volta, il cliente smette di usare il prodotto. La base autopulente rende sostenibile l'uso frequente.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">05</span><span>Come gestisce lo sporco difficile<span class="sub">Rimuove grasso e macchie, o risciacqua?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Adatta l'intensità allo sporco. I modelli premium usano acqua calda durante la pulizia, che scioglie il grasso e stacca le macchie più in fretta della fredda. Anche pressione e aspirazione possono regolarsi da sole.</p><p><strong>Perché è importante.</strong> L'acqua fredda risciacqua lo sporco di superficie; la calda scioglie grasso, residui di cibo e macchie incrostate. Per cucine, animali e famiglie con bambini fa la differenza tra pulire e risciacquare.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">06</span><span>Quanto è facile da usare<span class="sub">Posso usarlo spesso senza seccature?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Equilibrato, maneggevole, ragionevolmente leggero. Testa piatta che passa sotto i mobili. Veloce da preparare, facile da spingere, semplice da svuotare, serbatoio adeguato alla superficie.</p><p><strong>Perché è importante.</strong> Un Wet &amp; Dry pesante o complicato finisce in un ripostiglio e il cliente torna al vecchio straccio. La facilità d'uso quotidiana è il requisito silenzioso tra un prodotto adottato e uno di cui ci si pente.</p></div></div>
+    </section>
+  </div>
+
+  <!-- HAIR -->
+  <div class="cat" id="cat-hair">
+    <h2 class="cat-title">Cura dei capelli</h2>
+    <p class="kicker">La categoria che il cliente usa su di sé, ogni giorno.</p>
+    <div class="card" style="margin-top:14px">
+      <p class="lead">Asciugacapelli, styler e arricciacapelli automatico. Il cliente li tiene in mano, li usa sui propri capelli, li porta in viaggio.</p>
+    </div>
+    <div class="callout">
+      <span class="eyebrow">La differenza fondamentale</span>
+      <p class="sub" style="margin-top:0">Tutte le altre categorie puliscono la casa; questa si prende cura della persona. Non si vende sulla specifica tecnica: si vende sul risultato che il cliente vede allo specchio, ogni volta che lo usa. Alta frequenza d'uso: il cliente la tocca ogni giorno.</p>
+    </div>
+
+    <section>
+      <h2>La mappa</h2>
+      <div class="grid3">
+        <div class="card"><h3>Asciugacapelli</h3><p>Esaltano la naturale forma del capello.</p></div>
+        <div class="card"><h3>Styler</h3><p>Premiano la versatilità del risultato.</p></div>
+        <div class="card"><h3>Prodotti portatili</h3><p>Nascono per far fronte al problema della portabilità.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Cosa guadagna il cliente</h2>
+      <p class="kicker" style="margin-bottom:12px">Personal Care non si vende sulla potenza. Si vende sull'identità.</p>
+      <div class="card"><h3>Risultato visibile</h3><p>Il risultato si vede sui propri capelli e sulla propria pelle in tempo reale, non su un grafico. Capelli più luminosi, meno crespo, styling più rapido. Un beneficio che si tocca con mano, ogni giorno.</p></div>
+      <div class="card"><h3>Tempo nella routine</h3><p>Un asciugacapelli più veloce, uno styler che asciuga e acconcia in un solo passaggio, un arricciacapelli senza manualità: meno tempo davanti allo specchio, senza ridurre il risultato.</p></div>
+      <div class="card"><h3>Identità</h3><p>Per alcuni i capelli sono funzione: asciugarli e basta. Per altri sono espressione: cambiare look, sperimentare. Capire a quale dei due si parla cambia tutta la conversazione.</p></div>
+    </section>
+
+    <section class="uselist">
+      <h2>Un cliente, tre profili diversi</h2>
+      <div class="card"><h3>01 · Solo funzione</h3><p class="q">"Voglio i capelli asciutti e a posto, niente di più."</p><p>Asciugacapelli veloce, leggero, che non danneggi i capelli. Non styling: efficienza quotidiana.</p></div>
+      <div class="card"><h3>02 · Cambiare look</h3><p class="q">"Mi piace sperimentare con i capelli."</p><p>Ricci, onde, volume. Un rapporto con i capelli legato all'umore e all'occasione. Cerca uno strumento per cambiare aspetto facilmente.</p></div>
+      <div class="card"><h3>03 · In movimento</h3><p class="q">"Mi serve qualcosa che porto con me."</p><p>Viaggia spesso, vuole portabilità senza rinunciare alla performance. Seconda casa, palestra, weekend fuori porta. Lo stesso cliente può rientrare in più profili: il punto di partenza è la domanda giusta, non lo scaffale.</p></div>
+      <div class="filtro"><h4>Il filtro in negozio</h4><p><b>Vuole solo asciugare velocemente</b> → asciugacapelli entry/mid.</p><p><b>Vuole cambiare look senza fatica</b> → styler o arricciacapelli automatico.</p><p><b>Cerca portabilità</b> → gamma Pocket.</p></div>
+    </section>
+
+    <section>
+      <h2>Cosa rende buono un prodotto hair care</h2>
+      <div class="acc"><button class="acc-head"><span class="tag">01</span><span>Come protegge<span class="sub">Il calore danneggia i capelli?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Controllo della temperatura con precisione, decine o centinaia di volte al secondo, senza mai superare la soglia di sicurezza.</p><p><strong>Perché è importante.</strong> Un prodotto che scalda troppo o in modo incostante danneggia nel tempo i capelli che dovrebbe curare. La differenza tra i livelli di prodotto è quasi sempre qui: nella precisione del controllo, non nella potenza dichiarata.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">02</span><span>Come performa<span class="sub">Veloce e duraturo, o da rifare?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Motore potente che asciuga più in fretta, ioni negativi che chiudono la cuticola durante l'asciugatura, meccanismo di styling che mantiene la forma per ore, non minuti.</p><p><strong>Perché è importante.</strong> Chi deve rifare lo styling a metà giornata non userà più il prodotto con piacere. Il risultato che dura è ciò che giustifica la scelta premium.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">03</span><span>Come si adatta al cliente<span class="sub">Funziona per il suo tipo di capelli?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Accessori intercambiabili, modalità di temperatura regolabili. Un buon prodotto non ha un solo modo di funzionare.</p><p><strong>Perché è importante.</strong> Capelli fini, spessi, trattati: ogni cliente è diverso. Un prodotto che si adatta serve più persone nello stesso nucleo familiare.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">04</span><span>Quanto è facile da usare<span class="sub">Lo userà davvero, o finirà in un cassetto?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Peso contenuto, impugnatura comoda, utilizzo immediato, nessuna curva di apprendimento complicata.</p><p><strong>Perché è importante.</strong> Un prodotto complicato o pesante smette di essere usato dopo le prime volte, anche con prestazioni ottime. La facilità quotidiana decide tra anni d'uso e un mese.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">05</span><span>Quanto è versatile<span class="sub">Un'esigenza sola, o più momenti?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Accessori inclusi, formati portatili, più esigenze coperte con un solo strumento invece di più prodotti diversi.</p><p><strong>Perché è importante.</strong> Comprare strumenti diversi per asciugare, lisciare e arricciare costa di più e ingombra. Un prodotto versatile semplifica la routine e l'acquisto.</p></div></div>
+      <div class="acc"><button class="acc-head"><span class="tag">06</span><span>Quanto dura nel tempo<span class="sub">Prestazione e qualità costruttiva reggono?</span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="acc-body"><p><strong>Cosa significa.</strong> Materiali e motore pensati per un uso quotidiano prolungato, non per poche settimane intense.</p><p><strong>Perché è importante.</strong> Un prodotto hair care si usa ogni giorno, a differenza di molti elettrodomestici. La qualità costruttiva si nota nel tempo, ed è spesso ciò che giustifica la fascia di prezzo più alta.</p></div></div>
+    </section>
+  </div>
+
+  <!-- SKINCARE -->
+  <div class="cat" id="cat-skin">
+    <h2 class="cat-title">Skincare</h2>
+    <p class="kicker">La categoria che porta il trattamento estetico professionale a casa.</p>
+    <div class="card" style="margin-top:14px">
+      <p class="lead"><strong>Chrona</strong> è una maschera LED per il viso. Usa luce a lunghezze d'onda diverse per trattare la pelle: rossore, acne, segni di invecchiamento, opacità. Il cliente la indossa pochi minuti al giorno, a casa.</p>
+    </div>
+    <div class="card">
+      <h3>Che cosa è</h3>
+      <p>Un dispositivo a luce LED multi-lunghezza d'onda (rosso, blu, giallo, verde, infrarosso vicino), ognuna associata a un effetto specifico sulla pelle. Non è skincare topica, non è un prodotto da applicare e risciacquare: è un trattamento a luce, indossato come una maschera.</p>
+    </div>
+
+    <section>
+      <h2>Cosa guadagna il cliente</h2>
+      <div class="card"><h3>Risultato professionale a casa</h3><p>Lo stesso tipo di trattamento luminoso usato in alcuni studi dermatologici, senza appuntamenti ripetuti.</p></div>
+      <div class="card"><h3>Sessione breve</h3><p>Pochi minuti al giorno: si integra nella routine serale o mattutina senza richiedere tempo aggiuntivo.</p></div>
+      <div class="card"><h3>Costanza</h3><p>Il cliente possiede il dispositivo, lo usa con la frequenza che vuole, senza il costo e la pianificazione di sedute ripetute in studio.</p></div>
+    </section>
+
+    <section>
+      <h2>A chi si rivolge</h2>
+      <div class="card"><p>Il cliente che ha già provato un trattamento LED in un centro estetico o dermatologico e vuole continuare i risultati a casa. Il cliente attento alla cura della pelle che cerca un passo oltre la skincare tradizionale, senza affidarsi a procedure invasive.</p></div>
+      <span class="eyebrow" style="display:block;margin:18px 0 8px">Se un cliente chiede cos'è</span>
+      <div class="script">"È una mascherina che usa luce a colori diversi per trattare la pelle: rossore, acne, segni del tempo, opacità. Si indossa pochi minuti al giorno, a casa. È lo stesso principio dei trattamenti di luce che si fanno in alcuni centri estetici, ma lo strumento resta suo, lo usa quando vuole."</div>
+    </section>
+  </div>
+
+</div>
+
+<!-- ============ PAGE: RISPOSTE ============ -->
+<div class="page" id="page-risposte">
+
+  <div class="hero">
+    <span class="eyebrow">Sul campo</span>
+    <h1>Risposte pronte</h1>
+    <p>Le domande che i clienti fanno più spesso, con la risposta da dare — parola per parola quando serve, adattata alle sue parole quando possibile.</p>
+  </div>
+
+  <section>
+    <div class="acc">
+      <button class="acc-head"><span class="tag">?</span><span>"Qual è la differenza tra Dreame e MOVA?"</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <div class="script">"All'inizio, MOVA era un marchio più accessibile. Oggi è un'estensione del gruppo Dreame, prodotti complementari, per esigenze diverse. Qui vi proponiamo Dreame."</div>
+        <p>Un'unica casa madre: Dreame Technology. Due marchi distinti, da non confondere mai.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-head"><span class="tag">?</span><span>"Che cos'è quella maschera LED?"</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <div class="script">"È una mascherina che usa luce a colori diversi per trattare la pelle: rossore, acne, segni del tempo, opacità. Si indossa pochi minuti al giorno, a casa. È lo stesso principio dei trattamenti di luce che si fanno in alcuni centri estetici, ma lo strumento resta suo, lo usa quando vuole."</div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-head"><span class="tag">?</span><span>"Robot o aspirapolvere senza filo?"</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <p><strong>La domanda filtro:</strong> vuole che la pulizia avvenga da sola, o vuole controllare ogni passaggio?</p>
+        <p>→ Pavimenti puliti senza occuparsene di continuo → <strong>robot</strong>.</p>
+        <p>→ Vuole decidere lui dove, quando e con quale intensità → <strong>senza filo</strong>.</p>
+        <p>→ Vuole anche lavare i pavimenti duri, non solo aspirare → <strong>Wet &amp; Dry</strong>.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-head"><span class="tag">?</span><span>"Il Wet &amp; Dry serve davvero se ho già l'aspirapolvere?"</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <p>La domanda giusta da fare: <em>"Dopo aver aspirato, lava anche i pavimenti separatamente?"</em></p>
+        <p>Se sì: il Wet &amp; Dry sostituisce straccio e secchio, aspira e lava in un solo passaggio, con acqua pulita e sporca sempre separate. <strong>Basta fare le due cose separatamente.</strong></p>
+        <p>Se ha soprattutto tappeti e pochissimi pavimenti duri: meglio il senza filo — e ditelo con chiarezza. Il consiglio onesto è quello che fa tornare il cliente.</p>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-head"><span class="tag">?</span><span>"Costa troppo." — gestire l'obiezione prezzo</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <p><strong>01 Accogliere.</strong> Non difendersi, validare prima:</p>
+        <div class="script">"Ha ragione, è proprio così… è un investimento."</div>
+        <p><strong>02 Un solo argomento.</strong> Il più forte, non una lista:</p>
+        <div class="script">"Quello che le direi è questo: non le sto vendendo un robot. Le sto restituendo 4 ore a settimana."</div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <button class="acc-head"><span class="tag">?</span><span>"Ci devo pensare." — lasciare la porta aperta</span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="acc-body">
+        <p>Nessuna pressione. Extend funziona anche senza acquisto: un consiglio utile, un punto di contatto, un invito chiaro.</p>
+        <div class="script">"Sono qui dal martedì al sabato. Se vuole rivedere il modello o farsi una demo completa con calma, ripassi a trovarmi, sono qui per questo."</div>
+        <p>Il cliente trattato bene è quello che torna — e che porta qualcuno.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>La bigger picture</h2>
+    <div class="callout">
+      <span class="eyebrow">Da ricordare</span>
+      <p>Siamo un brand di tecnologia. Pulire è quello che facciamo meglio, oggi.</p>
+      <p class="sub">Dreame progetta i propri motori, i propri algoritmi, i propri componenti core. Ogni categoria nasce dalla stessa tecnologia di base, applicata a un problema diverso. Non vendete prodotti scollegati tra loro: vendete la stessa azienda, sotto forme diverse.</p>
+    </div>
+  </section>
+
+  <footer>
+    <b>DREAME</b><br>
+    Academy Promoter Italia · Materiale interno di formazione<br><br>
+    <img src="data:image/png;base64,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" alt="LFM S.p.A."><br>
+    Powered by LFM S.p.A. · By your side since 2001
+  </footer>
+
+</div>
+</main>
+
+<nav class="bottom">
+  <div class="inner">
+    <button class="nbtn on" data-nav="brand">
+      <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+      Brand
+    </button>
+    <button class="nbtn" data-nav="metodo">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="19" cy="17" r="3"/></svg>
+      Metodo
+    </button>
+    <button class="nbtn" data-nav="categorie">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      Categorie
+    </button>
+    <button class="nbtn" data-nav="risposte">
+      <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-4-6.9"/><path d="M9 12l2 2 4-5"/></svg>
+      Risposte
+    </button>
+  </div>
+</nav>
+
+<script>
+// ---------- bottom nav ----------
+const pages = document.querySelectorAll('.page');
+const nbtns = document.querySelectorAll('.nbtn');
+function go(name, push=true){
+  pages.forEach(p=>p.classList.toggle('active', p.id==='page-'+name));
+  nbtns.forEach(b=>b.classList.toggle('on', b.dataset.nav===name));
+  window.scrollTo({top:0, behavior:'instant'});
+  if(push){ try{ history.replaceState(null,'','#'+name); }catch(e){} }
+}
+nbtns.forEach(b=>b.addEventListener('click',()=>go(b.dataset.nav)));
+const start = location.hash.replace('#','');
+if(['brand','metodo','categorie','risposte'].includes(start)) go(start,false);
+
+// ---------- accordions ----------
+document.querySelectorAll('.acc-head').forEach(h=>{
+  h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
+});
+
+// ---------- DREAME letter strip -> open matching accordion ----------
+document.querySelectorAll('.dletter').forEach(l=>{
+  l.addEventListener('click',()=>{
+    const i = l.dataset.phase;
+    document.querySelectorAll('.dletter').forEach(x=>x.classList.remove('on'));
+    l.classList.add('on');
+    const acc = document.querySelector('.acc[data-acc="'+i+'"]');
+    if(acc){
+      document.querySelectorAll('#page-metodo .acc[data-acc]').forEach(a=>a.classList.remove('open'));
+      acc.classList.add('open');
+      acc.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+});
+
+// ---------- category chips ----------
+document.querySelectorAll('.chip').forEach(c=>{
+  c.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    c.classList.add('on');
+    document.querySelectorAll('.cat').forEach(cat=>cat.classList.toggle('active', cat.id==='cat-'+c.dataset.cat));
+    document.getElementById('catchips').scrollIntoView({behavior:'instant', block:'start'});
+  });
+});
+</script>
+</body>
+</html>
