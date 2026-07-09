@@ -308,6 +308,18 @@ nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-colum
 .demo-step::before{content:counter(demo);font-family:'Archivo';font-weight:800;color:var(--gold);margin-right:10px}
 .spec-table{border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;margin-top:10px}.spec-row{display:grid;grid-template-columns:42% 58%;border-bottom:1px solid var(--line-soft);background:var(--card)}.spec-row:last-child{border-bottom:none}.spec-row div{padding:12px 14px;font-size:.88rem}.spec-row div:first-child{color:var(--gold);font-weight:700}.spec-row div:last-child{color:var(--ink2)}
 
+.product-hero.beauty-hero{
+  background:
+    radial-gradient(70% 70% at 90% 5%, rgba(244,197,202,.18), transparent 58%),
+    radial-gradient(50% 50% at 12% 98%, rgba(198,168,112,.10), transparent 60%),
+    linear-gradient(135deg, #16100e 0%, #0b0a08 58%, #231b17 100%);
+}
+.product-visual.mask{width:160px;height:142px;right:22px;bottom:18px;transform:rotate(8deg);border-radius:46% 46% 54% 54%;background:linear-gradient(145deg,#f5efe3,#bca98a 62%,#6c5846);box-shadow:0 24px 60px rgba(0,0,0,.45);}
+.product-visual.mask::before{content:"";position:absolute;left:34px;top:40px;width:92px;height:24px;border-radius:999px;background:#0b0a08;border:1px solid rgba(198,168,112,.24);box-shadow:none;}
+.product-visual.mask::after{content:"";position:absolute;right:28px;bottom:24px;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle, rgba(255,98,112,.95), rgba(255,98,112,.14) 58%, transparent 70%);border:0;}
+.mode-dot{display:inline-flex;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:middle;background:var(--gold)}
+.mode-blue{background:#6b8fc9}.mode-green{background:#7fbf91}.mode-yellow{background:#e5c15f}.mode-red{background:#d96b6b}.mode-purple{background:#b38ac6}
+
 </style>
 </head>
 <body>
@@ -864,6 +876,7 @@ nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-colum
         <button class="chip" data-filter="robot">Robot</button>
         <button class="chip" data-filter="aircare">Air Care</button>
         <button class="chip" data-filter="haircare">Hair Care</button>
+        <button class="chip" data-filter="beauty">Beauty</button>
       </div>
 
       <section>
@@ -899,6 +912,12 @@ nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-colum
             <h3>AirStyle Pro 2</h3>
             <p>Air styler multi-styling 7 in 1: asciuga, modella e cambia look con flusso d’aria, controllo temperatura e accessori rapidi.</p>
             <div class="meta"><span class="pill">7 accessori</span><span class="pill">110k rpm</span><span class="pill">1000 t/s</span></div>
+          </article>
+          <article class="card product-card" data-product="chrona" data-cat="beauty" data-keywords="chrona maschera anti età fotoni led fototerapia pelle beauty rughe collagene acne rossori luminosità rejuvenate brighten balance calm restore 280 led 10 minuti 349">
+            <div class="type">Beauty · LED Phototherapy</div>
+            <h3>Chrona</h3>
+            <p>Maschera anti-età ai fotoni: fototerapia LED professionale a casa, con 5 modalità mirate per pelle, tono, rughe, rossori e imperfezioni.</p>
+            <div class="meta"><span class="pill">280 LED</span><span class="pill">5 modalità</span><span class="pill">10 min</span></div>
           </article>
         </div>
       </section>
@@ -1384,6 +1403,131 @@ nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-colum
           <div class="spec-row"><div>Temperature</div><div>28°C freddo · 55°C caldo mite · 80°C caldo · Cold Shot</div></div>
           <div class="spec-row"><div>Accessori</div><div>7: 2 spazzole · 3 asciugatura · 2 coni Auto-Wrap Barrel™ da 32 mm</div></div>
           <div class="spec-row"><div>Confezione</div><div>Spazzolino filtro · custodia morbida · garanzia 2 anni</div></div>
+        </div>
+      </section>
+    </div>
+
+
+
+    <div class="product-detail" id="product-chrona">
+      <button class="back-btn back-products">← Torna ai prodotti</button>
+      <div class="product-hero beauty-hero">
+        <span class="eyebrow">Dreame Chrona</span>
+        <div class="badge-row"><span class="badge">Beauty</span><span class="badge">LED Therapy</span><span class="badge">NEW</span></div>
+        <h1>Fototerapia professionale. A casa. In 10 minuti.</h1>
+        <p>Chrona è la maschera anti-età ai fotoni per trasformare un trattamento da clinica in una routine semplice, wireless e quotidiana.</p>
+        <div class="product-visual mask"></div>
+      </div>
+
+      <div class="read-tabs">
+        <button class="read-tab" data-jump="pitchChrona">Vendila in 30 sec <span>Domanda + promessa</span></button>
+        <button class="read-tab" data-jump="techChrona">Scopri le funzioni <span>5 luci, 5 problemi</span></button>
+        <button class="read-tab" data-jump="specChrona">Diventa esperto <span>Dati e obiezioni</span></button>
+      </div>
+
+      <section>
+        <span class="eyebrow">Quick facts</span>
+        <h2>Quello che devi ricordare <em>subito</em></h2>
+        <div class="quick-grid">
+          <div class="qfact"><b>280</b><span>chipset LED medicali</span></div>
+          <div class="qfact"><b>5</b><span>lunghezze d’onda</span></div>
+          <div class="qfact"><b>10 min</b><span>sessione standard</span></div>
+          <div class="qfact"><b>120 min</b><span>autonomia totale</span></div>
+        </div>
+      </section>
+
+      <section id="pitchChrona">
+        <span class="eyebrow">La domanda giusta da fare</span>
+        <div class="pitch-card">
+          <p class="kicker">Non partire dalla tecnologia</p>
+          <blockquote>“Cosa la disturba di più della sua pelle in questo momento?”</blockquote>
+          <p>La risposta ti dice quale modalità raccontare: rughe, pelle spenta, rossori, imperfezioni o più esigenze insieme. Chrona non si vende spiegando i nanometri: si vende collegando ogni luce a un problema reale della cliente.</p>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Cliente ideale</span>
+        <h2>A chi proporla</h2>
+        <div class="grid2">
+          <div class="card"><h3>Anti-age consapevole</h3><p>Cliente che nota rughe sottili, perdita di tonicità o pelle meno luminosa e cerca una routine premium ma non invasiva.</p></div>
+          <div class="card"><h3>Pelle spenta o stressata</h3><p>Chi parla di incarnato piatto, tono non uniforme, stanchezza, post-sole o luminosità che manca.</p></div>
+          <div class="card"><h3>Pelle reattiva</h3><p>Chi ha rossori, sensibilità, pelle che reagisce facilmente a stress, cosmetici o cambi di temperatura.</p></div>
+          <div class="card"><h3>Imperfezioni adulte</h3><p>Cliente frustrata da acne adulta, sebo, pelle grassa o trattamenti topici che irritano o funzionano solo parzialmente.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">La scienza spiegata semplice</span>
+        <h2>Come raccontarla senza diventare tecnici</h2>
+        <div class="grid2">
+          <div class="card tech-card"><h3>Non è calore. È luce.</h3><p>La fototerapia LED usa specifiche lunghezze d’onda per stimolare l’attività cellulare: collagene, riparazione, tono e infiammazione.</p></div>
+          <div class="card tech-card"><h3>È una tecnologia da clinica</h3><p>La LED therapy è usata da decenni in ambito dermatologico. Chrona porta lo stesso concetto a casa, senza appuntamento e senza costo per seduta.</p></div>
+          <div class="card tech-card"><h3>Ogni colore ha un compito</h3><p>Non dire “nanometri”. Di’: “Ogni colore lavora su un problema diverso della pelle, come avere più trattamenti mirati in un unico dispositivo.”</p></div>
+          <div class="card tech-card"><h3>10 minuti non sono casuali</h3><p>La durata è progettata per dare lo stimolo corretto: troppo poco non basta, troppo non migliora il risultato. La sessione standard è semplice e guidata.</p></div>
+        </div>
+      </section>
+
+      <section id="techChrona">
+        <span class="eyebrow">Le 5 modalità</span>
+        <h2>Cinque problemi della pelle. Cinque trattamenti mirati.</h2>
+        <div class="grid2">
+          <div class="card tech-card"><h3><span class="mode-dot mode-red"></span>Rejuvenate</h3><p><strong>Rosso 630 nm + NIR 850 nm.</strong> Per tonicità, rughe sottili e perdita di collagene. È la modalità da raccontare alla cliente anti-age.</p></div>
+          <div class="card tech-card"><h3><span class="mode-dot mode-yellow"></span>Brighten</h3><p><strong>Giallo 590 nm.</strong> Per tono non uniforme, opacità e pelle spenta. La risposta quando la cliente dice “mi vedo stanca”.</p></div>
+          <div class="card tech-card"><h3><span class="mode-dot mode-green"></span>Balance</h3><p><strong>Verde 530 nm.</strong> Per rossori, sensibilità e pelle reattiva. Da proporre a chi ha incarnato disomogeneo o pelle sotto pressione.</p></div>
+          <div class="card tech-card"><h3><span class="mode-dot mode-blue"></span>Calm</h3><p><strong>Blu 465 nm.</strong> Per imperfezioni, pelle grassa e tendenza acneica. Agisce dove si concentra l’attività superficiale delle imperfezioni.</p></div>
+          <div class="card tech-card"><h3><span class="mode-dot mode-purple"></span>Restore</h3><p><strong>Spettro completo.</strong> Per chi ha più bisogni contemporaneamente: rughe, macchie, rossori e tono non uniforme in zone diverse del viso.</p></div>
+          <div class="card tech-card"><h3>La frase semplice</h3><p>“Non deve scegliere un trattamento generico: sceglie la modalità in base a quello che vuole migliorare della pelle.”</p></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Come venderla</span>
+        <h2>La conversazione pronta</h2>
+        <div class="saybox">
+          <div class="card"><h3>Cliente dice</h3><p class="q">“Funziona davvero o è solo una luce?”</p><p>Qui non fare promesse esagerate. Spiega che la fototerapia LED è una tecnologia usata da anni in cliniche e centri estetici; Chrona la rende accessibile a casa.</p></div>
+          <div class="card"><h3>Tu rispondi</h3><p>“La differenza è che non sta comprando una crema: sta comprando un trattamento di luce mirato, con modalità diverse in base al problema della pelle.”</p></div>
+        </div>
+        <div class="saybox">
+          <div class="card"><h3>Cliente dice</h3><p class="q">“Perché costa 349 €?”</p><p>Non partire dai LED. Parti dal confronto col trattamento professionale.</p></div>
+          <div class="card"><h3>Tu rispondi</h3><p>“Una seduta LED in clinica può costare 50–150 €. Qui l’investimento è unico e lo usa a casa ogni volta che vuole, con sessioni da 10 minuti.”</p></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Demo in negozio</span>
+        <h2>Sequenza consigliata</h2>
+        <div class="demo-list">
+          <div class="demo-step">Chiedi prima: “Cosa la disturba di più della sua pelle in questo momento?”</div>
+          <div class="demo-step">Falle tenere in mano la maschera: il silicone morbido e la leggerezza si vendono da soli.</div>
+          <div class="demo-step">Mostra la finestra visiva: può rilassarsi, leggere o continuare la routine mentre lavora.</div>
+          <div class="demo-step">Spiega le 5 modalità collegandole ai problemi: rughe, luminosità, rossori, imperfezioni, spettro completo.</div>
+          <div class="demo-step">Chiudi sui 10 minuti: semplice da ricordare, facile da inserire nella routine serale.</div>
+          <div class="demo-step">Racconta il valore: trattamento professionale a casa, senza costo per seduta.</div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Obiezioni</span>
+        <h2>Risposte rapide</h2>
+        <div class="acc"><button class="acc-head"><span class="tag">?</span><span>È sicura?<span class="sub">Rassicura senza medicalizzare</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“È pensata per l’uso domestico: sessioni guidate da 10 minuti, auto-spegnimento e intensità nella finestra prevista per dispositivi LED home-use.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">€</span><span>Costa troppo<span class="sub">Confronto con la clinica</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Ha senso confrontarla con sedute LED professionali: una seduta può costare 50–150 €. Chrona sostituisce quel costo ricorrente con un dispositivo da usare a casa.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">L</span><span>Quale luce devo usare?<span class="sub">Semplifica la scelta</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Parta dal problema: rughe e tonicità = Rejuvenate; pelle spenta = Brighten; rossori = Balance; imperfezioni = Calm; più bisogni insieme = Restore.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">⏱</span><span>Devo usarla tanto?<span class="sub">Routine sostenibile</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“La sessione è da 10 minuti. L’obiettivo è renderla facile da usare con costanza, non trasformarla in un trattamento complicato.”</p></div></div>
+      </section>
+
+      <section id="specChrona">
+        <span class="eyebrow">Specifiche</span>
+        <h2>Dati tecnici essenziali</h2>
+        <div class="spec-table">
+          <div class="spec-row"><div>Categoria</div><div>Maschera LED anti-età ai fotoni · fototerapia viso</div></div>
+          <div class="spec-row"><div>LED</div><div>280 chipset LED medicali</div></div>
+          <div class="spec-row"><div>Lunghezze d’onda</div><div>Blu 465 nm · Verde 530 nm · Giallo 590 nm · Rosso 630 nm · NIR 850 nm</div></div>
+          <div class="spec-row"><div>Irradianza</div><div>35–45 mW/cm² secondo modalità</div></div>
+          <div class="spec-row"><div>Durata sessione</div><div>10 minuti come impostazione predefinita</div></div>
+          <div class="spec-row"><div>Batteria</div><div>2 batterie rimovibili da 60 minuti ciascuna · 120 minuti totali</div></div>
+          <div class="spec-row"><div>Controllo</div><div>Telecomando wireless · auto-memory · auto-spegnimento</div></div>
+          <div class="spec-row"><div>Comfort</div><div>Wireless · silicone liquido morbido · finestra visiva · adatta a tutti i tipi di pelle</div></div>
+          <div class="spec-row"><div>Colori / prezzo</div><div>Beige e Marrone · 349 €</div></div>
         </div>
       </section>
     </div>
