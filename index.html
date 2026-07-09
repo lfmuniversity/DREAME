@@ -247,7 +247,7 @@ nav.bottom{
   height:calc(var(--nav-h) + env(safe-area-inset-bottom));
   padding-bottom:env(safe-area-inset-bottom);
 }
-nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);height:var(--nav-h)}
+nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);height:var(--nav-h)}
 .nbtn{
   background:none;border:none;color:var(--ink3);cursor:pointer;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
@@ -257,6 +257,57 @@ nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-colum
 .nbtn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .nbtn.on{color:var(--gold)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+
+/* ---------- product library v2 ---------- */
+.product-hero{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;
+  padding:28px 22px;margin:28px 0 20px;
+  background:
+    radial-gradient(70% 80% at 90% 10%, rgba(198,168,112,.22), transparent 58%),
+    linear-gradient(135deg, #18130d 0%, #0b0a08 58%, #21170d 100%);
+  min-height:260px;
+}
+.product-hero::after{
+  content:"";position:absolute;right:-70px;top:20px;width:250px;height:250px;border-radius:50%;
+  border:1px solid rgba(198,168,112,.28);box-shadow:0 0 80px rgba(198,168,112,.12) inset;
+}
+.product-hero .badge-row,.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.badge{border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-hi);font-family:'Archivo',sans-serif;background:rgba(198,168,112,.06)}
+.product-hero h1{position:relative;z-index:1;font-size:clamp(2rem,8vw,3.25rem);line-height:1.02;margin:.4rem 0 .8rem;letter-spacing:-.04em}
+.product-hero p{position:relative;z-index:1;color:var(--ink2);max-width:38ch;font-size:1rem}
+.product-visual{position:absolute;right:18px;bottom:14px;width:210px;height:92px;opacity:.9;transform:rotate(-11deg);border-radius:999px;background:linear-gradient(90deg, rgba(227,207,158,.20), rgba(255,255,255,.04));border:1px solid rgba(198,168,112,.20)}
+.product-visual::before{content:"";position:absolute;left:16px;top:24px;width:150px;height:44px;border-radius:999px;background:linear-gradient(90deg,#2a2824,#786a50,#24211d);box-shadow:0 12px 34px rgba(0,0,0,.45)}
+.product-visual::after{content:"";position:absolute;right:8px;top:16px;width:58px;height:58px;border-radius:18px;background:linear-gradient(180deg,#16130f,#070605);border:1px solid var(--line)}
+.product-search{width:100%;background:var(--card);border:1px solid var(--line-soft);border-radius:999px;padding:13px 16px;color:var(--ink);font:inherit;margin:8px 0 14px;outline:none}
+.product-card{position:relative;overflow:hidden;cursor:pointer;transition:transform .2s ease,border-color .2s ease}
+.product-card:hover{transform:translateY(-2px);border-color:var(--line)}
+.product-card .type{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-family:'Archivo',sans-serif;margin-bottom:.25rem}
+.product-card h3{font-size:1.15rem;color:var(--ink);margin-bottom:.35rem}
+.product-card .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pill{border:1px solid var(--line-soft);border-radius:999px;padding:5px 9px;color:var(--ink2);font-size:.72rem;background:rgba(255,255,255,.02)}
+.read-tabs{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+@media(min-width:620px){.read-tabs{grid-template-columns:repeat(3,1fr)}}
+.read-tab{border:1px solid var(--line-soft);background:linear-gradient(180deg,var(--card2),var(--card));border-radius:14px;padding:13px 14px;color:var(--ink);font-family:'Manrope';font-weight:700;text-align:left;cursor:pointer}
+.read-tab span{display:block;color:var(--ink3);font-size:.75rem;font-weight:500;margin-top:2px}
+.product-detail{display:none}.product-detail.active{display:block;animation:fadein .3s ease}
+.product-library.hidden{display:none}
+.back-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:transparent;color:var(--gold);font-weight:700;font-family:'Manrope';cursor:pointer;margin:18px 0 4px}
+.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+@media(min-width:620px){.quick-grid{grid-template-columns:repeat(4,1fr)}}
+.qfact{border:1px solid var(--line);border-radius:16px;padding:16px 12px;background:rgba(198,168,112,.05);text-align:center;min-height:104px;display:flex;flex-direction:column;justify-content:center}
+.qfact b{font-family:'Archivo';font-size:1.45rem;color:var(--gold-hi);line-height:1.1}.qfact span{font-size:.78rem;color:var(--ink2);margin-top:6px}
+.persona{display:grid;grid-template-columns:1fr;gap:10px}.persona .card{margin-bottom:0}
+@media(min-width:620px){.persona{grid-template-columns:1fr 1fr}}
+.pitch-card{border:1px solid var(--line);border-radius:20px;padding:22px;background:linear-gradient(135deg,rgba(198,168,112,.12),rgba(198,168,112,.03));margin:14px 0}
+.pitch-card blockquote{font-family:'Archivo';font-size:1.55rem;line-height:1.18;letter-spacing:-.02em;color:var(--ink);margin:8px 0}
+.saybox{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}.saybox .card{margin:0}
+@media(min-width:620px){.saybox{grid-template-columns:1fr 1fr}}
+.tech-card h3{color:var(--gold-hi)}
+.demo-list{counter-reset:demo;display:grid;gap:10px}.demo-step{counter-increment:demo;border:1px solid var(--line-soft);border-radius:14px;padding:13px 14px;background:var(--card);color:var(--ink2)}
+.demo-step::before{content:counter(demo);font-family:'Archivo';font-weight:800;color:var(--gold);margin-right:10px}
+.spec-table{border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;margin-top:10px}.spec-row{display:grid;grid-template-columns:42% 58%;border-bottom:1px solid var(--line-soft);background:var(--card)}.spec-row:last-child{border-bottom:none}.spec-row div{padding:12px 14px;font-size:.88rem}.spec-row div:first-child{color:var(--gold);font-weight:700}.spec-row div:last-child{color:var(--ink2)}
+
 </style>
 </head>
 <body>
@@ -794,6 +845,352 @@ nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-colum
   </footer>
 
 </div>
+
+
+<div class="page" id="page-prodotti">
+  <div class="wrap">
+    <div class="hero">
+      <span class="eyebrow">Product Library</span>
+      <h1>Prodotti Dreame, pronti da vendere.</h1>
+      <p>Una libreria rapida per trasformare schede tecniche e training deck in argomenti di vendita, demo e risposte alle obiezioni.</p>
+    </div>
+
+    <div class="product-library" id="productLibrary">
+      <input class="product-search" id="productSearch" placeholder="Cerca prodotto, categoria o bisogno…" autocomplete="off">
+      <div class="chips" id="productChips">
+        <button class="chip on" data-filter="all">Tutti</button>
+        <button class="chip" data-filter="stick">Stick Vacuum</button>
+        <button class="chip" data-filter="wetdry">Wet & Dry</button>
+        <button class="chip" data-filter="aircare">Air Care</button>
+      </div>
+
+      <section>
+        <span class="eyebrow">Primo prodotto integrato</span>
+        <h2>Schede <em>operative</em></h2>
+        <div class="grid2" id="productGrid">
+          <article class="card product-card" data-product="z30" data-cat="stick" data-keywords="z30 pro aqua aspirapolvere stick lava pavimenti acqua animali tappeti">
+            <div class="type">Stick Vacuum + Wet Cleaning</div>
+            <h3>Z30 Pro Aqua</h3>
+            <p>Aspira tutta la casa e lava i pavimenti duri nello stesso passaggio. La scheda è pensata per usarla anche davanti al cliente.</p>
+            <div class="meta"><span class="pill">310 AW</span><span class="pill">AquaCycle™</span><span class="pill">TangleCut™</span></div>
+          </article>
+          <article class="card product-card" data-product="tseries" data-cat="wetdry" data-keywords="t series lavapavimenti t12 t14 t15 t16 wet dry tineco acqua calda vapore">
+            <div class="type">Wet & Dry Range</div>
+            <h3>T Series</h3>
+            <p>La gamma lavapavimenti da T12 Pro a T16 Pro Steam: navigatore rapido per abbinare bisogno, modello e argomento di vendita.</p>
+            <div class="meta"><span class="pill">25–30 kPa</span><span class="pill">9,85 cm</span><span class="pill">95°C</span></div>
+          </article>
+          <article class="card product-card" data-product="mf10" data-cat="aircare" data-keywords="mf10 ventilatore senza pale aria smart gyro wing tempsync 270 airboost">
+            <div class="type">Air Care</div>
+            <h3>MF10 Bladeless Fan</h3>
+            <p>Ventilatore senza pale smart: sicurezza, comfort, copertura 270°, TempSync™ e script pronti per la vendita estiva.</p>
+            <div class="meta"><span class="pill">270°</span><span class="pill">13 m</span><span class="pill">Smart</span></div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <div class="product-detail" id="product-z30">
+      <button class="back-btn" id="backProducts">← Torna ai prodotti</button>
+      <div class="product-hero">
+        <span class="eyebrow">Dreame Z30 Pro Aqua</span>
+        <div class="badge-row"><span class="badge">Premium</span><span class="badge">Stick Vacuum</span><span class="badge">Wet Cleaning</span></div>
+        <h1>Aspira tutto. Lava i pavimenti.</h1>
+        <p>Non è una semplice lavapavimenti: è un aspirapolvere stick premium che, quando serve, lava anche i pavimenti duri.</p>
+        <div class="product-visual"></div>
+      </div>
+
+      <div class="read-tabs">
+        <button class="read-tab" data-jump="pitchZ30">Vendilo in 30 sec <span>La frase pronta</span></button>
+        <button class="read-tab" data-jump="techZ30">Scopri le funzioni <span>Le tecnologie chiave</span></button>
+        <button class="read-tab" data-jump="specZ30">Diventa esperto <span>Dati e specifiche</span></button>
+      </div>
+
+      <section>
+        <span class="eyebrow">Quick facts</span>
+        <h2>Quello che devi ricordare <em>subito</em></h2>
+        <div class="quick-grid">
+          <div class="qfact"><b>310 AW</b><span>potenza aspirante</span></div>
+          <div class="qfact"><b>90 min</b><span>autonomia massima</span></div>
+          <div class="qfact"><b>2 in 1</b><span>aspira + lava</span></div>
+          <div class="qfact"><b>70°C</b><span>asciugatura rullo</span></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Cliente ideale</span>
+        <h2>A chi lo consigli?</h2>
+        <div class="persona">
+          <div class="card"><h3>Perfetto per</h3><p>Chi usa ancora due prodotti separati: aspirapolvere per polvere, briciole, tappeti e divani; mocio o lavapavimenti per i pavimenti duri.</p></div>
+          <div class="card"><h3>Bisogno dominante</h3><p>“Sono stanco di fare due passaggi.” Qui Z30 Pro Aqua entra fortissimo: semplifica la routine senza rinunciare all’aspirazione completa.</p></div>
+        </div>
+      </section>
+
+      <section id="pitchZ30">
+        <span class="eyebrow">La frase che vende</span>
+        <div class="pitch-card">
+          <p class="kicker">Elevator pitch</p>
+          <blockquote>“Questo non sostituisce solo una lavapavimenti. Sostituisce aspirapolvere + mocio.”</blockquote>
+          <p>Lo proponi quando il cliente vuole un solo dispositivo per tutta la casa: aspira ovunque e lava a umido sui pavimenti duri.</p>
+        </div>
+        <div class="saybox">
+          <div class="card"><h3>Il cliente dice</h3><p class="lead">“Mi sono stufato di passare prima l’aspirapolvere e poi il mocio.”</p></div>
+          <div class="card"><h3>Tu rispondi</h3><p>“È esattamente il motivo per cui esiste Z30 Pro Aqua: aspira tutta la casa come uno stick premium e, quando serve, lava anche i pavimenti duri.”</p></div>
+        </div>
+      </section>
+
+      <section id="techZ30">
+        <span class="eyebrow">Tecnologie chiave</span>
+        <h2>I motivi tecnici, spiegati <em>semplice</em></h2>
+        <div class="grid2">
+          <div class="card tech-card"><h3>AquaCycle™ 2.0</h3><p>Spruzza, raschia, strofina e aspira. Il messaggio per il cliente: non passa solo un panno umido, lavora attivamente sullo sporco.</p></div>
+          <div class="card tech-card"><h3>Separazione a 3 comparti</h3><p>Acqua pulita, acqua sporca e rifiuti solidi restano separati: aiuta a evitare cattivi odori e la sensazione di “lavare con acqua sporca”.</p></div>
+          <div class="card tech-card"><h3>TangleCut™</h3><p>Taglia attivamente capelli e peli durante l’aspirazione. Argomento perfetto per chi ha animali o capelli lunghi in casa.</p></div>
+          <div class="card tech-card"><h3>Autopulizia e asciugatura</h3><p>Risciacquo automatico del rullo e asciugatura con aria calda a 70°C: meno manutenzione manuale, meno rischio di muffe e odori.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Demo in negozio</span>
+        <h2>Sequenza consigliata</h2>
+        <div class="demo-list">
+          <div class="demo-step">Parti dal bisogno: “Oggi usa più aspirapolvere o più mocio?”</div>
+          <div class="demo-step">Mostra che è uno stick completo, non una lavapavimenti ingombrante.</div>
+          <div class="demo-step">Aggancia o mostra il modulo Aqua e spiega il lavaggio in una passata.</div>
+          <div class="demo-step">Fai vedere il sistema di serbatoi separati.</div>
+          <div class="demo-step">Chiudi con autopulizia: “Finito, lo rimette in base e si pulisce da solo.”</div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Obiezioni</span>
+        <h2>Risposte rapide</h2>
+        <div class="acc"><button class="acc-head"><span class="tag">€</span><span>Costa tanto<span class="sub">Sposta il confronto da prezzo a sostituzione</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Ha senso valutarlo non come un singolo aspirapolvere, ma come un dispositivo che sostituisce due prodotti e due passaggi: aspirazione completa più lavaggio dei pavimenti duri.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">D</span><span>Ho già Dyson<span class="sub">Non attaccare il prodotto che possiede</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Dyson è fortissimo sull’aspirazione. Qui il punto è diverso: mantenere l’aspirazione da stick, aggiungendo il lavaggio quando serve.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">?</span><span>Ma lava davvero?<span class="sub">Porta il focus sul processo</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Non si limita a inumidire il pavimento: pretratta, strofina con il rullo, raschia l’acqua sporca e aspira i residui.”</p></div></div>
+      </section>
+
+      <section id="specZ30">
+        <span class="eyebrow">Specifiche</span>
+        <h2>Dati tecnici essenziali</h2>
+        <div class="spec-table">
+          <div class="spec-row"><div>Categoria</div><div>Wet Cleaning Stick Vacuum</div></div>
+          <div class="spec-row"><div>Potenza</div><div>310 AW</div></div>
+          <div class="spec-row"><div>Autonomia</div><div>Fino a 90 minuti</div></div>
+          <div class="spec-row"><div>Lavaggio</div><div>AquaCycle™ 2.0 con spazzola per pulizia a umido</div></div>
+          <div class="spec-row"><div>Serbatoi</div><div>Acqua pulita 400 ml, acqua sporca 320 ml, separazione rifiuti solidi</div></div>
+          <div class="spec-row"><div>Manutenzione</div><div>Autopulizia a un tocco + asciugatura aria calda 70°C</div></div>
+          <div class="spec-row"><div>Anti-groviglio</div><div>Spazzola multi superficie TangleCut™</div></div>
+        </div>
+      </section>
+    </div>
+
+
+    <div class="product-detail" id="product-tseries">
+      <button class="back-btn back-products">← Torna ai prodotti</button>
+      <div class="product-hero">
+        <span class="eyebrow">Dreame T Series</span>
+        <div class="badge-row"><span class="badge">Wet & Dry</span><span class="badge">Gamma completa</span><span class="badge">T12 → T16</span></div>
+        <h1>Ogni pavimento. Ogni sporco. Ogni angolo.</h1>
+        <p>La serie lavapavimenti Dreame si vende ascoltando il bisogno dominante: essenziale, automatica, acqua calda, sporco pesante o igiene.</p>
+        <div class="product-visual"></div>
+      </div>
+
+      <div class="read-tabs">
+        <button class="read-tab" data-jump="pitchTSeries">Vendila in 30 sec <span>La logica gamma</span></button>
+        <button class="read-tab" data-jump="modelsTSeries">Scegli il modello <span>Navigatore cliente</span></button>
+        <button class="read-tab" data-jump="specTSeries">Diventa esperto <span>Confronto rapido</span></button>
+      </div>
+
+      <section>
+        <span class="eyebrow">Quick facts</span>
+        <h2>La Serie T in <em>4 numeri</em></h2>
+        <div class="quick-grid">
+          <div class="qfact"><b>9,85 cm</b><span>corpo ultra-slim</span></div>
+          <div class="qfact"><b>180°</b><span>lavora anche da distesa</span></div>
+          <div class="qfact"><b>25–30 kPa</b><span>aspirazione gamma</span></div>
+          <div class="qfact"><b>95°C</b><span>autopulizia rullo</span></div>
+        </div>
+      </section>
+
+      <section id="pitchTSeries">
+        <span class="eyebrow">La frase che vende</span>
+        <div class="pitch-card">
+          <p class="kicker">Elevator pitch</p>
+          <blockquote>“La Serie T nasce per risolvere i tre problemi veri delle lavapavimenti: aloni, capelli sul rullo e mobili bassi.”</blockquote>
+          <p>Da lì scegli il modello: non parti dal prezzo, parti dal tipo di sporco e da quanto il cliente vuole automatizzare.</p>
+        </div>
+        <div class="saybox">
+          <div class="card"><h3>Il cliente dice</h3><p class="lead">“Voglio lavare bene, ma non voglio impazzire con la macchina dopo.”</p></div>
+          <div class="card"><h3>Tu rispondi</h3><p>“Qui la differenza è che pulisce il pavimento e si mantiene pulita: doppio raschietto, autopulizia a 95°C e asciugatura rapida. Non è solo lavare, è togliere il lavoro dopo il lavoro.”</p></div>
+        </div>
+      </section>
+
+      <section id="modelsTSeries">
+        <span class="eyebrow">Navigatore gamma</span>
+        <h2>Prima ascolta. Poi <em>consiglia</em>.</h2>
+        <div class="tlist">
+          <div class="trow"><div class="t1">T12 Pro</div><div class="t2">“Voglio l’essenziale fatto bene, senza spendere troppo.”</div><div class="t3">L’esperienza completa di ingresso: 25 kPa, 9,85 cm, TangleCut™ 2.0, autopulizia a 95°C.</div></div>
+          <div class="trow"><div class="t1">T14 Pro</div><div class="t2">“Voglio che la macchina pensi al posto mio.”</div><div class="t3">AutoAdapt™ legge lo sporco e regola la pulizia; GlideWheel™ riduce la fatica al polso.</div></div>
+          <div class="trow"><div class="t1">T15 Pro Heat</div><div class="t2">“I miei pavimenti si sporcano spesso, ho bisogno di velocità.”</div><div class="t3">ThermoRinse™ a 90°C scioglie grasso e sporco secco; batteria estraibile per continuare senza pause.</div></div>
+          <div class="trow"><div class="t1">T16 Pro Heat</div><div class="t2">“Ho sporco pesante e voluminoso.”</div><div class="t3">AI WhaleSweep™ solleva cereali, briciole e detriti grandi invece di spingerli in giro.</div></div>
+          <div class="trow"><div class="t1">T16 Pro Steam</div><div class="t2">“Per me igiene e igienizzazione vengono prima.”</div><div class="t3">SaunaClean™ a 200°C con igiene certificata TUV: la scelta per bambini, animali e massima sicurezza percepita.</div></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Basi comuni</span>
+        <h2>Le 6 cose che devi saper <em>dire</em></h2>
+        <div class="grid2">
+          <div class="card tech-card"><h3>Ultra-Slim 9,85 cm</h3><p>Si distende a 180° e passa sotto divani, letti e mobili bassi senza perdere aspirazione.</p></div>
+          <div class="card tech-card"><h3>TangleCut™ 2.0</h3><p>Il doppio raschietto libera capelli e pelo animale dal rullo e rimuove l’acqua in eccesso.</p></div>
+          <div class="card tech-card"><h3>Autopulizia a 95°C</h3><p>Lava la spazzola e la asciuga: meno odori, meno manutenzione, macchina pronta al prossimo uso.</p></div>
+          <div class="card tech-card"><h3>Pulizia su tre bordi</h3><p>Arriva contro battiscopa e angoli, dove di solito il cliente deve ripassare a mano.</p></div>
+          <div class="card tech-card"><h3>25–30 kPa</h3><p>Gestisce liquidi, detriti secchi e sporco appiccicoso senza rallentare.</p></div>
+          <div class="card tech-card"><h3>Display + voce</h3><p>Stato batteria, acqua, modalità e autopulizia sempre chiari, anche per clienti meno tecnologici.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Demo in negozio</span>
+        <h2>Sequenza consigliata</h2>
+        <div class="demo-list">
+          <div class="demo-step">Chiedi: “Il problema più grande sono aloni, capelli o mobili bassi?”</div>
+          <div class="demo-step">Mostra subito la posizione a 180° e l’altezza da 9,85 cm.</div>
+          <div class="demo-step">Spiega il doppio raschietto: capelli via dal rullo, acqua via dal pavimento.</div>
+          <div class="demo-step">Aggancia il bisogno al modello giusto con il navigatore gamma.</div>
+          <div class="demo-step">Chiudi con autopulizia a 95°C: “Non deve pulire la macchina a mano.”</div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Obiezioni</span>
+        <h2>Risposte rapide</h2>
+        <div class="acc"><button class="acc-head"><span class="tag">T</span><span>Meglio Tineco?<span class="sub">Rimani sui dati semplici</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Dipende dal modello, ma qui Dreame punta su corpo più sottile, aspirazione più forte su più fasce e funzioni come acqua calda, vapore o braccio AI nei modelli alti.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">?</span><span>Quale modello scelgo?<span class="sub">Non partire dal prezzo</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Se vuole essenziale: T12. Se vuole automazione: T14. Se vuole acqua calda e velocità: T15. Se ha sporco pesante: T16 Heat. Se vuole igiene: T16 Steam.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">€</span><span>Mi basta quello base<span class="sub">Valida, poi qualifica</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“T12 è già completo. Ha senso salire solo se c’è un bisogno preciso: sensori, acqua calda, batteria estraibile, braccio AI o vapore.”</p></div></div>
+      </section>
+
+      <section id="specTSeries">
+        <span class="eyebrow">Specifiche</span>
+        <h2>Confronto gamma essenziale</h2>
+        <div class="spec-table">
+          <div class="spec-row"><div>T12 Pro</div><div>25 kPa · 9,85 cm · base completa · no acqua calda</div></div>
+          <div class="spec-row"><div>T14 Pro</div><div>25 kPa · AutoAdapt™ · GlideWheel™ · 9,85 cm</div></div>
+          <div class="spec-row"><div>T15 Pro Heat</div><div>30 kPa · acqua calda 90°C · batteria estraibile</div></div>
+          <div class="spec-row"><div>T16 Pro Heat</div><div>30 kPa · 90°C · AI WhaleSweep™ · app Dreamehome</div></div>
+          <div class="spec-row"><div>T16 Pro Steam</div><div>30 kPa · vapore 200°C · 90°C · app Dreamehome · certificazione TUV</div></div>
+          <div class="spec-row"><div>Comune a tutti</div><div>9,85 cm · distensione 180° · TangleCut™ 2.0 · autopulizia 95°C · tre bordi · display/voce</div></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="product-detail" id="product-mf10">
+      <button class="back-btn back-products">← Torna ai prodotti</button>
+      <div class="product-hero">
+        <span class="eyebrow">Dreame MF10</span>
+        <div class="badge-row"><span class="badge">Air Care</span><span class="badge">Bladeless</span><span class="badge">Smart Home</span></div>
+        <h1>Aria fresca in ogni angolo.</h1>
+        <p>MF10 non si vende come “ventilatore bello”: si vende come categoria superiore. Più sicuro, più facile da pulire, più smart, più uniforme.</p>
+        <div class="product-visual"></div>
+      </div>
+
+      <div class="read-tabs">
+        <button class="read-tab" data-jump="pitchMF10">Vendilo in 30 sec <span>La domanda giusta</span></button>
+        <button class="read-tab" data-jump="techMF10">Scopri le funzioni <span>Aria, smart, sicurezza</span></button>
+        <button class="read-tab" data-jump="specMF10">Diventa esperto <span>Dati e confronto</span></button>
+      </div>
+
+      <section>
+        <span class="eyebrow">Quick facts</span>
+        <h2>Quello che devi ricordare <em>subito</em></h2>
+        <div class="quick-grid">
+          <div class="qfact"><b>270°</b><span>copertura spaziale</span></div>
+          <div class="qfact"><b>16x</b><span>AirBoost™ airflow</span></div>
+          <div class="qfact"><b>13 m</b><span>portata massima</span></div>
+          <div class="qfact"><b>Smart</b><span>app + voce</span></div>
+        </div>
+      </section>
+
+      <section id="pitchMF10">
+        <span class="eyebrow">La domanda che apre la vendita</span>
+        <div class="pitch-card">
+          <p class="kicker">Prima di descrivere qualsiasi cosa</p>
+          <blockquote>“Cosa usi per rinfrescarti a casa oggi?”</blockquote>
+          <p>La risposta ti dice se devi parlare di sicurezza, animali, design, camera da letto, smart home o bolletta.</p>
+        </div>
+        <div class="saybox">
+          <div class="card"><h3>Il cliente dice</h3><p class="lead">“Ho un bambino piccolo / un gatto / non voglio pale in giro.”</p></div>
+          <div class="card"><h3>Tu rispondi</h3><p>“Qui il senza pale non è solo estetica: significa sicurezza, pulizia più facile e un flusso più delicato. La parte pericolosa semplicemente non è esposta.”</p></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Cliente ideale</span>
+        <h2>Tre profili da riconoscere</h2>
+        <div class="grid3">
+          <div class="card"><h3>Genitore</h3><p>Cerca sicurezza, flusso delicato per cameretta e una superficie facile da pulire.</p></div>
+          <div class="card"><h3>Casa con animali</h3><p>Vuole evitare pale, rumori aggressivi e aria diretta che spaventa cane o gatto.</p></div>
+          <div class="card"><h3>Professionista urbano</h3><p>Compra design, smart home, silenziosità e controllo da app/voce.</p></div>
+        </div>
+      </section>
+
+      <section id="techMF10">
+        <span class="eyebrow">Tecnologie chiave</span>
+        <h2>I motivi tecnici, spiegati <em>semplice</em></h2>
+        <div class="grid2">
+          <div class="card tech-card"><h3>GyroWing™ 270°</h3><p>Due ali ruotano verticalmente e la testa ruota orizzontalmente: l’aria non resta in un corridoio stretto, avvolge la stanza.</p></div>
+          <div class="card tech-card"><h3>AirBoost™ 16x</h3><p>Amplifica il flusso fino a 28,1 m³/min, con velocità 18 m/s e portata fino a 13 metri. Al cliente: “l’aria ti trova”.</p></div>
+          <div class="card tech-card"><h3>TempSync™</h3><p>Il sensore legge la temperatura e adatta la velocità: comfort costante, meno regolazioni manuali, consumi più controllati.</p></div>
+          <div class="card tech-card"><h3>SceneMaster™</h3><p>Routine da app in base a orario o temperatura: mattina dolce, pomeriggio più intenso, notte in modalità riposo.</p></div>
+          <div class="card tech-card"><h3>App + voce</h3><p>Dreamehome, Alexa, Google Home e Yandex Alice. Nota utile: configurazione su Wi‑Fi 2,4 GHz.</p></div>
+          <div class="card tech-card"><h3>Filtro opzionale</h3><p>Utile per pollini, polvere e pelo animale. Va venduto con onestà: non è un purificatore HEPA certificato.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Demo in negozio</span>
+        <h2>Sequenza consigliata</h2>
+        <div class="demo-list">
+          <div class="demo-step">Fai prima la domanda: “Cosa usa oggi per rinfrescarsi?”</div>
+          <div class="demo-step">Mostra il senza pale: sicurezza e pulizia si capiscono toccandolo.</div>
+          <div class="demo-step">Fai partire il movimento 270° prima di nominare GyroWing™.</div>
+          <div class="demo-step">Mostra i 10 livelli e spiega: “la brezza giusta, non troppo forte né troppo debole.”</div>
+          <div class="demo-step">Fai sentire il clic del telecomando magnetico: piccolo dettaglio, grande percezione premium.</div>
+        </div>
+      </section>
+
+      <section>
+        <span class="eyebrow">Obiezioni</span>
+        <h2>Risposte rapide</h2>
+        <div class="acc"><button class="acc-head"><span class="tag">D</span><span>Voglio Dyson<span class="sub">Stessa categoria, generazione diversa</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Dyson è il riferimento del senza pale. MF10 però punta su copertura 3D a 270°, adattamento alla temperatura e automazioni smart: non solo aria davanti, ma comfort gestito nella stanza.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">€</span><span>Un ventilatore costa molto meno<span class="sub">Cambia categoria</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Vero: un ventilatore tradizionale costa meno. Qui il valore è sicurezza senza pale, design premium, controllo smart e aria distribuita. Non è un upgrade di prezzo, è un upgrade di categoria.”</p></div></div>
+        <div class="acc"><button class="acc-head"><span class="tag">H</span><span>Purifica l’aria?<span class="sub">Essere corretti aumenta fiducia</span></span><span class="chev">⌄</span></button><div class="acc-body"><p>“Può usare un filtro opzionale per particelle come polvere, pollini e pelo animale, ma non va presentato come purificatore HEPA. Se il bisogno è purificazione certificata, meglio indirizzare alla gamma purificatori.”</p></div></div>
+      </section>
+
+      <section id="specMF10">
+        <span class="eyebrow">Specifiche</span>
+        <h2>Dati tecnici essenziali</h2>
+        <div class="spec-table">
+          <div class="spec-row"><div>Potenza</div><div>55 W</div></div>
+          <div class="spec-row"><div>Flusso amplificato</div><div>28,1 m³/min · 1.686 m³/h · 16x AirBoost™</div></div>
+          <div class="spec-row"><div>Velocità / portata</div><div>18 m/s · fino a 13 m</div></div>
+          <div class="spec-row"><div>Copertura</div><div>Fino a 270° · 180° orizzontale · 90° verticale per GyroWing™</div></div>
+          <div class="spec-row"><div>Modalità</div><div>Intelligente · Brezza naturale · Riposo · 10 livelli velocità</div></div>
+          <div class="spec-row"><div>Smart</div><div>Dreamehome · Alexa · Google Home · Yandex Alice · Wi‑Fi 2,4 GHz</div></div>
+          <div class="spec-row"><div>Rumore massimo</div><div>≤65 dB(A)</div></div>
+          <div class="spec-row"><div>Filtrazione</div><div>Filtro principale lavabile incluso · filtro particolato opzionale venduto separatamente</div></div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <b>DREAME</b><br>
+      Product Library · contenuti trasformati dai training deck ufficiali
+    </footer>
+  </div>
+</div>
+
 </main>
 
 <nav class="bottom">
@@ -814,6 +1211,10 @@ nav.bottom .inner{max-width:760px;margin:0 auto;display:grid;grid-template-colum
       <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 1 1-4-6.9"/><path d="M9 12l2 2 4-5"/></svg>
       Risposte
     </button>
+    <button class="nbtn" data-nav="prodotti">
+      <svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+      Prodotti
+    </button>
   </div>
 </nav>
 
@@ -829,7 +1230,7 @@ function go(name, push=true){
 }
 nbtns.forEach(b=>b.addEventListener('click',()=>go(b.dataset.nav)));
 const start = location.hash.replace('#','');
-if(['brand','metodo','categorie','risposte'].includes(start)) go(start,false);
+if(['brand','metodo','categorie','risposte','prodotti'].includes(start)) go(start,false);
 
 // ---------- accordions ----------
 document.querySelectorAll('.acc-head').forEach(h=>{
@@ -850,6 +1251,46 @@ document.querySelectorAll('.dletter').forEach(l=>{
     }
   });
 });
+
+
+
+// ---------- product library ----------
+const productLibrary = document.getElementById('productLibrary');
+const productDetails = [...document.querySelectorAll('.product-detail')];
+document.querySelectorAll('.product-card[data-product]').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const target = document.getElementById('product-' + card.dataset.product);
+    if(!target) return;
+    productLibrary.classList.add('hidden');
+    productDetails.forEach(d=>d.classList.remove('active'));
+    target.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+});
+document.querySelectorAll('.back-products, #backProducts').forEach(btn=>btn.addEventListener('click',()=>{
+  productDetails.forEach(d=>d.classList.remove('active'));
+  productLibrary.classList.remove('hidden');
+  window.scrollTo({top:0, behavior:'smooth'});
+}));
+document.querySelectorAll('.read-tab').forEach(btn=>btn.addEventListener('click',()=>{
+  const el=document.getElementById(btn.dataset.jump); if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}));
+const productSearch=document.getElementById('productSearch');
+const productCards=[...document.querySelectorAll('.product-card')];
+let currentFilter='all';
+function filterProducts(){
+  const q=(productSearch?.value||'').toLowerCase();
+  productCards.forEach(c=>{
+    const okFilter=currentFilter==='all'||c.dataset.cat===currentFilter;
+    const okText=(c.innerText+' '+(c.dataset.keywords||'')).toLowerCase().includes(q);
+    c.style.display=(okFilter&&okText)?'block':'none';
+  });
+}
+if(productSearch){productSearch.addEventListener('input',filterProducts)}
+document.querySelectorAll('#productChips .chip').forEach(ch=>ch.addEventListener('click',()=>{
+  document.querySelectorAll('#productChips .chip').forEach(x=>x.classList.remove('on'));
+  ch.classList.add('on'); currentFilter=ch.dataset.filter; filterProducts();
+}));
 
 // ---------- category chips ----------
 document.querySelectorAll('.chip').forEach(c=>{
